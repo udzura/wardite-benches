@@ -1,0 +1,65 @@
+#!/bin/sh
+set -eu
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+wardite_dir=${WARDITE_DIR-"$root/../wardite"}
+case $wardite_dir in
+    /*) ;;
+    *) wardite_dir="$root/spinel/$wardite_dir" ;;
+esac
+
+status=0
+newline='
+'
+
+check_tool() {
+    label=$1
+    hint=$2
+    command=$3
+    if version=$("$command" --version 2>/dev/null); then
+        printf 'OK      %s (%s)\n' "$label" "${version%%"$newline"*}"
+    else
+        printf 'MISSING %s (%s). %s\n' "$label" "$command" "$hint" >&2
+        return 1
+    fi
+}
+
+check_rust_target() {
+    target=wasm32-unknown-unknown
+    if libdir=$(rustc --print target-libdir --target "$target" 2>/dev/null); then
+        for core in "$libdir"/libcore-*.rlib; do
+            if [ -f "$core" ]; then
+                printf 'OK      %s\n' "$target"
+                return 0
+            fi
+        done
+    fi
+    printf 'MISSING %s. With rustup, run: rustup target add %s\n' "$target" "$target" >&2
+    return 1
+}
+
+if [ -r "$wardite_dir/exe/wardite" ] && [ -r "$wardite_dir/lib/wardite.rb" ]; then
+    printf 'OK      Wardite source (%s)\n' "$wardite_dir"
+else
+    printf 'MISSING Wardite source (%s). Set WARDITE_DIR to the checkout path.\n' "$wardite_dir" >&2
+    status=1
+fi
+
+(
+    if [ -d "$wardite_dir" ]; then
+        cd "$wardite_dir" || exit 1
+    fi
+    check_tool Spinel 'Put spinel on PATH or set SPINEL to its executable path.' "${SPINEL-spinel}"
+) || status=1
+check_tool 'C compiler' 'Install a C toolchain with cc on PATH.' cc || status=1
+check_tool make 'Install make.' make || status=1
+check_tool wat2wasm 'Install WABT.' wat2wasm || status=1
+check_tool Cargo 'Install Rust with Cargo.' cargo || status=1
+if check_tool rustc 'Install a Rust toolchain.' rustc; then
+    check_rust_target || status=1
+else
+    status=1
+fi
+check_tool 'hyperfine (optional)' 'Install hyperfine to run the benchmark examples.' hyperfine || :
+
+exit "$status"

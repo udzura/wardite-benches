@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+wardite="$root/build/wardite"
+if [ ! -x "$wardite" ]; then
+    printf '%s\n' 'Wardite is missing. Run script/build first.' >&2
+    exit 1
+fi
+
+exec "$wardite" --new-engine "$@"

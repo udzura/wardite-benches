@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+
+make -C "$root/spinel"
+mkdir -p "$root/build/wat"
+for source in "$root"/wat/*.wat; do
+    name=${source##*/}
+    wat2wasm "$source" -o "$root/build/wat/${name%.wat}.wasm"
+done
+
+cargo build --manifest-path "$root/rust/Cargo.toml" --locked \
+    --release --target wasm32-unknown-unknown --target-dir "$root/build/rust" --examples
