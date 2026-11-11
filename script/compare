@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+
+import argparse
+import math
+import re
+import struct
+import subprocess
+import sys
+from pathlib import Path
+
+
+def invoke(engine, command):
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, check=True)
+    except OSError as error:
+        raise ValueError(f"Could not start {engine}: {error}") from error
+    except subprocess.CalledProcessError as error:
+        detail = error.stderr.strip() or error.stdout.strip()
+        raise ValueError(f"{engine} failed (exit {error.returncode})\n{detail}") from error
+    return result
+
+
+def numeric_bits(kind, value):
+    if kind.startswith("I"):
+        return int(value) % (1 << int(kind[1:]))
+
+    number = float(value)
+    if math.isnan(number):
+        return None
+    return struct.pack(">f" if kind == "F32" else ">d", number)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Compare one numeric Wasm export result from Wardite and Wasmtime."
+    )
+    parser.add_argument("wasm", metavar="WASM")
+    parser.add_argument("export", metavar="EXPORT")
+    parser.add_argument("args", nargs=argparse.REMAINDER, metavar="ARG")
+    options = parser.parse_args()
+
+    run = str(Path(__file__).resolve().with_name("run"))
+    args = ["--invoke", options.export, "--", options.wasm, *options.args]
+    try:
+        wardite = invoke("Wardite", [run, "--no-wasi", *args])
+        match = re.search(r"^return value: ([IF](?:32|64))\(([^\n]+)\)$", wardite.stderr, re.M)
+        if match is None:
+            raise ValueError(f"Expected one numeric result from Wardite.\n{wardite.stderr.strip()}")
+        kind, wardite_value = match.groups()
+
+        wasmtime = invoke("Wasmtime", ["wasmtime", "run", *args])
+        wasmtime_value = wasmtime.stdout.strip()
+        try:
+            agrees = numeric_bits(kind, wardite_value) == numeric_bits(kind, wasmtime_value)
+        except (ValueError, OverflowError, struct.error) as error:
+            raise ValueError(
+                f"Expected one {kind} result from each engine.\n"
+                f"Wardite: {wardite_value!r}\nWasmtime: {wasmtime_value!r}"
+            ) from error
+    except ValueError as error:
+        print(error, file=sys.stderr)
+        return 2
+
+    print(f"Wardite  {kind}({wardite_value})")
+    print(f"Wasmtime {kind}({wasmtime_value})")
+    print("Match" if agrees else "Mismatch")
+    return 0 if agrees else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

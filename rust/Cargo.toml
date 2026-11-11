@@ -7,3 +7,11 @@ publish = false
 [[example]]
 name = "xorshift"
 crate-type = ["cdylib"]
+
+[[example]]
+name = "splitmix64"
+crate-type = ["cdylib"]
+
+[[example]]
+name = "mandelbrot"
+crate-type = ["cdylib"]
