@@ -25,7 +25,7 @@ check_tool() {
 }
 
 check_rust_target() {
-    target=wasm32-unknown-unknown
+    target=$1
     if libdir=$(rustc --print target-libdir --target "$target" 2>/dev/null); then
         for core in "$libdir"/libcore-*.rlib; do
             if [ -f "$core" ]; then
@@ -56,7 +56,8 @@ check_tool make 'Install make.' make || status=1
 check_tool wat2wasm 'Install WABT.' wat2wasm || status=1
 check_tool Cargo 'Install Rust with Cargo.' cargo || status=1
 if check_tool rustc 'Install a Rust toolchain.' rustc; then
-    check_rust_target || status=1
+    check_rust_target wasm32-unknown-unknown || status=1
+    check_rust_target wasm32-wasip1 || status=1
 else
     status=1
 fi

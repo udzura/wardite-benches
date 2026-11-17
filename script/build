@@ -12,3 +12,6 @@ done
 
 cargo build --manifest-path "$root/rust/Cargo.toml" --locked \
     --release --target wasm32-unknown-unknown --target-dir "$root/build/rust" --examples
+cargo build --manifest-path "$root/rust/Cargo.toml" --locked \
+    --release --target wasm32-wasip1 --target-dir "$root/build/rust" --features wasi \
+    --example base64_codec --example png_grayscale

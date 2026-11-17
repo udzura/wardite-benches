@@ -4,6 +4,13 @@ version = "0.1.0"
 edition = "2024"
 publish = false
 
+[features]
+wasi = ["dep:base64", "dep:png"]
+
+[dependencies]
+base64 = { version = "0.22", optional = true }
+png = { version = "0.18", optional = true }
+
 [[example]]
 name = "xorshift"
 crate-type = ["cdylib"]
@@ -15,3 +22,15 @@ crate-type = ["cdylib"]
 [[example]]
 name = "mandelbrot"
 crate-type = ["cdylib"]
+
+[[example]]
+name = "monte_carlo_pi"
+crate-type = ["cdylib"]
+
+[[example]]
+name = "base64_codec"
+required-features = ["wasi"]
+
+[[example]]
+name = "png_grayscale"
+required-features = ["wasi"]
