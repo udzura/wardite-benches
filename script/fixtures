@@ -36,6 +36,12 @@ def main():
     (directory / "data.bin").write_bytes(data)
     (directory / "data.b64").write_bytes(base64.b64encode(data) + b"\n")
     (directory / "rgb.png").write_bytes(rgb_png(256))
+    # 16 times the default inputs, so the transform outweighs start-up.
+    large = data * 16
+    (directory / "data-4m.bin").write_bytes(large)
+    (directory / "data-4m.b64").write_bytes(base64.b64encode(large) + b"\n")
+    (directory / "rgb-1024.png").write_bytes(rgb_png(1024))
+    (directory / "empty").write_bytes(b"")
 
 
 if __name__ == "__main__":

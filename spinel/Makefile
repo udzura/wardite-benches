@@ -7,3 +7,4 @@ SPINELFLAGS ?= -O2
 wardite:
 	mkdir -p "$(ROOT)/build"
 	cd "$(WARDITE_DIR)" && "$(SPINEL)" -I lib --strict-require $(SPINELFLAGS) exe/wardite -o "$(ROOT)/build/wardite"
+	{ git -C "$(WARDITE_DIR)" describe --always --dirty; "$(SPINEL)" --version; } > "$(ROOT)/build/wardite.version"

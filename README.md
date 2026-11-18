@@ -60,7 +60,7 @@ script/compare --bench "$wasm" crc8_stream 256 1
 
 `base64_codec` の `encode` は標準入力のバイナリを標準アルファベットとパディング付きでエンコードし、末尾に LF を 1 つ付けます。`decode` は末尾に LF が 0 個または 1 個の Base64 を受け取り、元のバイト列を返します。`png_grayscale` は PNG をデコードし、RGB を `0.299R + 0.587G + 0.114B` で 8 ビットのグレースケールに変換します。出力はアルファチャンネルを省いたバイナリ PGM（P5）です。
 
-`script/fixtures` は Python 3 で固定入力を `build/fixtures/` に生成します。自分のファイルも標準入力から渡せます。
+`script/fixtures` は Python 3 で固定入力を `build/fixtures/` に生成します。既定の入力（`data.bin`、`data.b64`、`rgb.png`）に加えて、データを16倍にした `data-4m.bin` と `data-4m.b64`、画像の一辺を4倍にした `rgb-1024.png`、空の `empty` を作ります。自分のファイルも標準入力から渡せます。
 
 ```sh
 script/fixtures
@@ -88,7 +88,7 @@ WASI コマンドは `script/compare --wasi-stdin FILE WASM [ARG ...]` で実行
 
 ## ベンチマーク
 
-`script/compare --bench` は戻り値の一致を確認してから、`hyperfine` で選んだエンジンを比較します。各エンジンを 2 回ウォームアップし、5 回計測します。計測対象はプロセス起動から終了までの時間で、Wasm のロードや実行準備も含みます。
+`script/compare --bench` は戻り値の一致を確認してから、`hyperfine` で選んだエンジンを比較します。各エンジンを 2 回ウォームアップし、5 回計測します。計測対象はプロセス起動から終了までの時間で、Wasm のロードや実行準備も含みます。Wardite は `script/run` を経由せず、`build/wardite --new-engine` を直接起動します。macOS ではシェルスクリプトの起動に 20 ms 以上かかり、Wardite だけが不利になるためです。
 
 ```sh
 script/compare --bench build/rust/wasm32-unknown-unknown/release/examples/monte_carlo_pi.wasm monte_carlo_pi 1000000 1
@@ -107,7 +107,32 @@ script/compare --bench --wasi-stdin build/fixtures/rgb.png "$wasi/png_grayscale.
 同じエンジン上で別々のサンプルを比較する場合は、`hyperfine` に実行コマンドを渡します。
 
 ```sh
-hyperfine --warmup 2 \
-  'script/run --no-wasi --invoke xorshift -- build/wat/xorshift.wasm 5000000 1' \
-  'script/run --no-wasi --invoke xorshift -- build/rust/wasm32-unknown-unknown/release/examples/xorshift.wasm 5000000 1'
+hyperfine -N --warmup 2 \
+  'build/wardite --new-engine --no-wasi --invoke xorshift -- build/wat/xorshift.wasm 5000000 1' \
+  'build/wardite --new-engine --no-wasi --invoke xorshift -- build/rust/wasm32-unknown-unknown/release/examples/xorshift.wasm 5000000 1'
 ```
+
+## ベースラインの記録
+
+`script/baseline.sh [OUT_DIR]` は、[Wardite の ADR 0018](https://github.com/udzura/wardite/blob/main/docs/adr/0018-efflorescence-real-workload-measurement.md) の手順で全サンプルを計測します。`script/build` と `script/fixtures` を先に実行し、`hyperfine`、`wasmtime`、`iwasm` を用意してください。
+
+各ケースで `script/compare --iwasm` により結果を照合してから、3 つのエンジンを `hyperfine` で 2 回ウォームアップして 9 回計測します。回数は `RUNS` で変えられます。WASI のケースでは、`WARDITE_TRACE` によるロード時間と、`--mir-profile` による MIR 命令の実行回数も記録します。WASI での `--mir-profile` の出力には、ADR 0018 の変更を含む Wardite が必要です。
+
+```sh
+script/build
+script/fixtures
+script/baseline.sh
+```
+
+結果は `OUT_DIR`（既定は `build/results/<日時>`）に置きます。
+
+| ファイル | 内容 |
+| --- | --- |
+| `env.txt` | Wardite と Spinel のリビジョン、wardite-benches のリビジョン、CPU、OS、各エンジンのバージョン、Wasm の SHA-256 |
+| `summary.md` | ケースごとの中央値、Wardite のロード時間と最大 RSS、iwasm との比、MIR 命令の総数 |
+| `<case>.json` | `hyperfine --export-json` の生値 |
+| `<case>.load.txt` | `WARDITE_TRACE` の `load_from_buffer` の各回の値 |
+| `<case>.mir.txt` | `--mir-profile` の合計と opcode ごとの実行回数 |
+| `<case>.compare.txt` | `script/compare` の照合結果 |
+
+`script/build` は Wardite をビルドしたときの `git describe` と `spinel --version` を `build/wardite.version` に書き、`env.txt` はそこから読みます。比べる前後のバイナリは、同じ Spinel でビルドしてください。
