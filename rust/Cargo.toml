@@ -28,6 +28,10 @@ name = "monte_carlo_pi"
 crate-type = ["cdylib"]
 
 [[example]]
+name = "crc8_stream"
+crate-type = ["cdylib"]
+
+[[example]]
 name = "base64_codec"
 required-features = ["wasi"]
 

@@ -6,8 +6,15 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut args = std::env::args().skip(1);
     let operation = args.next();
     let transform = match (operation.as_deref(), args.next()) {
-        (Some("encode"), None) => |input: &[u8]| Ok(STANDARD.encode(input).into_bytes()),
-        (Some("decode"), None) => |input: &[u8]| STANDARD.decode(input),
+        (Some("encode"), None) => |input: &[u8]| {
+            let mut encoded = STANDARD.encode(input).into_bytes();
+            encoded.push(b'\n');
+            Ok(encoded)
+        },
+        (Some("decode"), None) => |input: &[u8]| {
+            let input = input.strip_suffix(b"\n").unwrap_or(input);
+            STANDARD.decode(input)
+        },
         _ => return Err("usage: base64_codec encode|decode".into()),
     };
 

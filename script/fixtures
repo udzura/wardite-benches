@@ -34,7 +34,7 @@ def main():
     directory.mkdir(parents=True, exist_ok=True)
     data = bytes(range(256)) * 1024 + b"\xff"
     (directory / "data.bin").write_bytes(data)
-    (directory / "data.b64").write_bytes(base64.b64encode(data))
+    (directory / "data.b64").write_bytes(base64.b64encode(data) + b"\n")
     (directory / "rgb.png").write_bytes(rgb_png(256))
 
 

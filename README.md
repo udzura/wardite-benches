@@ -45,9 +45,20 @@ script/run --no-wasi --invoke monte_carlo_pi -- "$examples/monte_carlo_pi.wasm" 
 # return value: F64(3.12568)
 ```
 
+### ストリームの CRC-8
+
+`crc8_stream` は4 KiBのチャンクを第1引数の回数だけ読み、CRC-8（多項式 `0x07`）を返します。各バイトで入力とCRC表を1回ずつ読むので、線形メモリのバイト読み出しを比較できます。第2引数が `1` のときは処理前にメモリを1ページ拡張します。次の2例はどちらも1 MiBを処理し、期待値は `228`（`0xe4`）です。
+
+```sh
+cargo build --manifest-path rust/Cargo.toml --locked --release --target wasm32-unknown-unknown --target-dir build/rust --example crc8_stream
+wasm=build/rust/wasm32-unknown-unknown/release/examples/crc8_stream.wasm
+script/compare --bench "$wasm" crc8_stream 256 0
+script/compare --bench "$wasm" crc8_stream 256 1
+```
+
 ### WASI Preview 1 のサンプル
 
-`base64_codec` の `encode` は標準入力のバイナリを標準アルファベットとパディング付きでエンコードします。`decode` は改行や空白を含まない Base64 を受け取り、元のバイト列を返します。`png_grayscale` は PNG をデコードし、RGB を `0.299R + 0.587G + 0.114B` で 8 ビットのグレースケールに変換します。出力はアルファチャンネルを省いたバイナリ PGM（P5）です。
+`base64_codec` の `encode` は標準入力のバイナリを標準アルファベットとパディング付きでエンコードし、末尾に LF を 1 つ付けます。`decode` は末尾に LF が 0 個または 1 個の Base64 を受け取り、元のバイト列を返します。`png_grayscale` は PNG をデコードし、RGB を `0.299R + 0.587G + 0.114B` で 8 ビットのグレースケールに変換します。出力はアルファチャンネルを省いたバイナリ PGM（P5）です。
 
 `script/fixtures` は Python 3 で固定入力を `build/fixtures/` に生成します。自分のファイルも標準入力から渡せます。
 
