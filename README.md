@@ -152,3 +152,5 @@ script/baseline.sh
 [ADR 0026 の検証](adr/0026/README.md)では、未使用 MIR スロットの圧縮を深い再帰と Ruby の Wasm 起動で比較できます。
 
 [ADR 0027 の検証](adr/0027/README.md)では、局所 CSE の有無で Base64 encode/decode、PNG 輝度変換、整数ループを比較できます。
+
+[4 MiB Base64 decode の区間計測](benchmark/base64-decode/README.md)では、Wardite と iwasm の時間差を復号本体、32文字単位のループ、入出力に分けて比較できます。
