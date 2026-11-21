@@ -152,3 +152,5 @@ script/baseline.sh
 [ADR 0026 の検証](adr/0026/README.md)では、未使用 MIR スロットの圧縮を深い再帰と Ruby の Wasm 起動で比較できます。
 
 [ADR 0027 の検証](adr/0027/README.md)では、局所 CSE の有無で Base64 encode/decode、PNG 輝度変換、整数ループを比較できます。
+
+[ADR 0028 の検証](adr/0028/README.md)では、定数畳み込み、制御フロー簡約、死命令除去、ループ不変式移動を個別に比較できます。
