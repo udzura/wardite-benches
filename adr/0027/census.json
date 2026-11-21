@@ -1,0 +1,90 @@
+{
+  "decode": [
+    {
+      "function": 18,
+      "start": 0,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 1
+    },
+    {
+      "function": 18,
+      "start": 118,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 1
+    }
+  ],
+  "encode": [
+    {
+      "function": 18,
+      "start": 0,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 1
+    },
+    {
+      "function": 18,
+      "start": 118,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 1
+    }
+  ],
+  "loop": [
+    {
+      "function": 0,
+      "start": 1,
+      "duplicates": {
+        "I32_AND": 1
+      },
+      "entries": 1000000
+    }
+  ],
+  "png": [
+    {
+      "function": 18,
+      "start": 36,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 1
+    },
+    {
+      "function": 18,
+      "start": 266,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 1
+    },
+    {
+      "function": 18,
+      "start": 384,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 1
+    },
+    {
+      "function": 18,
+      "start": 1005,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 1
+    },
+    {
+      "function": 62,
+      "start": 9,
+      "duplicates": {
+        "I32_ADD": 1
+      },
+      "entries": 390
+    }
+  ]
+}

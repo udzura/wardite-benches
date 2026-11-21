@@ -150,3 +150,5 @@ script/baseline.sh
 `script/build` は Wardite をビルドしたときの `git describe` と `spinel --version` を `build/wardite.version` に書き、`env.txt` はそこから読みます。比べる前後のバイナリは、同じ Spinel でビルドしてください。
 
 [ADR 0026 の検証](adr/0026/README.md)では、未使用 MIR スロットの圧縮を深い再帰と Ruby の Wasm 起動で比較できます。
+
+[ADR 0027 の検証](adr/0027/README.md)では、局所 CSE の有無で Base64 encode/decode、PNG 輝度変換、整数ループを比較できます。
