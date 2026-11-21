@@ -12,7 +12,7 @@ import time
 from recursive import WIDTH, module
 
 
-def run(command, expected, cache_phase=None):
+def run(command, expected, cache_phase=None, snapshot_phase=None):
     env = dict(os.environ, WARDITE_MIR_JIT="0", WARDITE_TRACE="1")
     with tempfile.TemporaryFile() as stdout:
         start = time.monotonic()
@@ -41,7 +41,7 @@ def run(command, expected, cache_phase=None):
         raise RuntimeError(f"{command}\n{output}{trace}")
     rss_bytes = usage.ru_maxrss if sys.platform == "darwin" else usage.ru_maxrss * 1024
     row = dict(seconds=elapsed, rss_bytes=rss_bytes)
-    if "--mir-eager" in command:
+    if "--mir-eager" in command and not cache_phase:
         # In eager, uncached mode this interval ends just after lowering.
         # The Wasm guest has no start section that would run inside the load.
         row["mir_seconds"] = loaded - mir_start
@@ -50,6 +50,12 @@ def run(command, expected, cache_phase=None):
         if not match:
             raise RuntimeError(trace)
         row["cache_bytes"] = Path(match[1]).stat().st_size
+    if snapshot_phase:
+        match = re.search(rf"^snapshot {snapshot_phase}: (.+) \(([\d.]+)s\)$", trace, re.M)
+        if not match:
+            raise RuntimeError(trace)
+        row["snapshot_bytes"] = Path(match[1]).stat().st_size
+        row["snapshot_seconds"] = float(match[2])
     row["load_seconds"] = float(re.search(r"^load_from_buffer: (.+)$", trace, re.M)[1])
     return row
 

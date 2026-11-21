@@ -41,3 +41,11 @@ python3 adr/0026/verify.py "$after/build/wardite"
 ```
 
 `layout.rb` は引数とローカルの順序、書き込みだけのスロット、副表の参照、定数値、再度圧縮しても同じ配置になることを調べる。`verify.py` は Apple Silicon macOS の Spinel と `wasm-tools` を使う。圧縮の有無、JIT の有無、遅延準備・MIR2 ミス・ヒットの各組み合わせで、直接呼び出し、間接呼び出し、メモリ操作、例外のペイロードと再送出、ゼロ除算を確認する。剰余を求める export ではネイティブコード実行とトラップ時のインタープリタへの復帰もトレースで確認する。
+
+## 起動スナップショットも保存した Ruby Wasm
+
+```sh
+python3 adr/0026/cached_startup.py "$before/build/wardite" "$after/build/wardite" "$ruby_wasm" > cached-startup.jsonl
+```
+
+両バイナリで MIR2 と WASI 起動スナップショットを個別に生成する。その後、スナップショットからの通常復元、MIR2 の全関数一括復元、一括復元とスナップショットの併用を測る。生成は計時対象から外し、各起動で MIR2 ヒット、スナップショットを使うケースでは復元成功のトレースも確認する。ゲスト引数・出力検査・計時方法は通常起動の比較と共通。
