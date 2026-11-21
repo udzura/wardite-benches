@@ -1,5 +1,7 @@
 # ADR 0026 のスロット圧縮を検証する
 
+Apple M3 Pro で測定した中央値と各回の生データは[比較結果](results.md)に記録した。
+
 `before` と `after` は同じ Spinel、同じフラグでビルドした変更前後の Wardite CLI。各チェックアウトで `make spinel` を実行すると `build/wardite` ができる。以下は wardite-benches のルートから実行する。
 
 ```sh

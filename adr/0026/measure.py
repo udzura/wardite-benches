@@ -33,7 +33,11 @@ def run(command, expected, cache_phase=None):
         stdout.seek(0)
         output = stdout.read().decode()
         trace = "".join(lines)
-    if proc.returncode or expected not in (output + trace).splitlines():
+    if "--invoke" in command:
+        matches = output == "" and expected in trace.splitlines()
+    else:
+        matches = output == expected + "\n"
+    if proc.returncode or not matches:
         raise RuntimeError(f"{command}\n{output}{trace}")
     rss_bytes = usage.ru_maxrss if sys.platform == "darwin" else usage.ru_maxrss * 1024
     row = dict(seconds=elapsed, rss_bytes=rss_bytes)
