@@ -32,6 +32,10 @@ name = "crc8_stream"
 crate-type = ["cdylib"]
 
 [[example]]
+name = "count_primes"
+crate-type = ["cdylib"]
+
+[[example]]
 name = "base64_codec"
 required-features = ["wasi"]
 

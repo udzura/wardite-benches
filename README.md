@@ -45,6 +45,18 @@ script/run --no-wasi --invoke monte_carlo_pi -- "$examples/monte_carlo_pi.wasm" 
 # return value: F64(3.12568)
 ```
 
+### 素数の個数
+
+`count_primes.wasm` の両 export は、指定した上限以下の素数の個数を返します。`count_primes` は奇数の候補を試し割りし、剰余演算と早期打ち切りの分岐を測ります。`count_primes_sieve` はエラトステネスの篩を使い、奇数の候補に 1 バイトずつ割り当てた配列への書き込みを測ります。篩の配列の確保と初期化も計測に含まれます。
+
+ベースラインでは両方とも上限を `1_000_000` に設定します。期待値は `78_498` です。
+
+```sh
+wasm=build/rust/wasm32-unknown-unknown/release/examples/count_primes.wasm
+script/compare --bench --iwasm "$wasm" count_primes 1000000
+script/compare --bench --iwasm "$wasm" count_primes_sieve 1000000
+```
+
 ### ストリームの CRC-8
 
 `crc8_stream` は4 KiBのチャンクを第1引数の回数だけ読み、CRC-8（多項式 `0x07`）を返します。各バイトで入力とCRC表を1回ずつ読むので、線形メモリのバイト読み出しを比較できます。第2引数が `1` のときは処理前にメモリを1ページ拡張します。次の2例はどちらも1 MiBを処理し、期待値は `228`（`0xe4`）です。
@@ -129,7 +141,7 @@ script/baseline.sh
 | ファイル | 内容 |
 | --- | --- |
 | `env.txt` | Wardite と Spinel のリビジョン、wardite-benches のリビジョン、CPU、OS、各エンジンのバージョン、Wasm の SHA-256 |
-| `summary.md` | ケースごとの中央値、Wardite のロード時間と最大 RSS、iwasm との比、MIR 命令の総数 |
+| `summary.md` | ケースごとの中央値、Wardite のロード時間と最大 RSS、Wasmtime・iwasm に対する Wardite の実行時間の中央値の比、MIR 命令の総数 |
 | `<case>.json` | `hyperfine --export-json` の生値 |
 | `<case>.load.txt` | `WARDITE_TRACE` の `load_from_buffer` の各回の値 |
 | `<case>.mir.txt` | `--mir-profile` の合計と opcode ごとの実行回数 |

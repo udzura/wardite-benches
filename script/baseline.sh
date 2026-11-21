@@ -31,7 +31,7 @@ W="build/wardite --new-engine"
     echo "iwasm: $(iwasm --version | head -1)"
     echo "$(hyperfine --version)"
     shasum -a 256 build/wat/xorshift.wasm $ex/xorshift.wasm $ex/splitmix64.wasm $ex/mandelbrot.wasm \
-        $ex/monte_carlo_pi.wasm $ex/crc8_stream.wasm $wasi/base64_codec.wasm $wasi/png_grayscale.wasm
+        $ex/monte_carlo_pi.wasm $ex/count_primes.wasm $ex/crc8_stream.wasm $wasi/base64_codec.wasm $wasi/png_grayscale.wasm
 } > "$out/env.txt"
 
 bench() { # NAME HYPERFINE_ARGS...
@@ -80,6 +80,8 @@ num splitmix64 $ex/splitmix64.wasm splitmix64 10000000 1
 num mandelbrot-f32 $ex/mandelbrot.wasm mandelbrot_f32 200 150 100
 num mandelbrot-f64 $ex/mandelbrot.wasm mandelbrot_f64 200 150 100
 num monte-carlo-pi $ex/monte_carlo_pi.wasm monte_carlo_pi 1000000 1
+num count-primes $ex/count_primes.wasm count_primes 1000000
+num count-primes-sieve $ex/count_primes.wasm count_primes_sieve 1000000
 num crc8-stream $ex/crc8_stream.wasm crc8_stream 4096 0
 num crc8-stream-grown $ex/crc8_stream.wasm crc8_stream 4096 1
 wasi_case base64-encode-empty $fx/empty $wasi/base64_codec.wasm encode
@@ -103,8 +105,8 @@ def seconds(value):
     return f"{value * 1000:.1f} ms" if value < 1 else f"{value:.3f} s"
 
 
-print("| Case | Wardite | Load | Wardite RSS | Wasmtime | iwasm | Wardite / iwasm | MIR dispatches |")
-print("|---|---:|---:|---:|---:|---:|---:|---:|")
+print("| Case | Wardite | Load | Wardite RSS | Wasmtime | iwasm | Wardite / Wasmtime | Wardite / iwasm | MIR dispatches |")
+print("|---|---:|---:|---:|---:|---:|---:|---:|---:|")
 for name in (out / "cases.txt").read_text().split():
     wardite, wasmtime, iwasm = (r["summary"] for r in json.loads((out / f"{name}.json").read_text())["results"])
     median = lambda r: r["time_wall_clock"]["median"]
@@ -115,6 +117,7 @@ for name in (out / "cases.txt").read_text().split():
         mir = f"{int((out / f'{name}.mir.txt').read_text().split()[0].split('=')[1]):,}"
     rss = wardite["memory_peak_resident"]["max"] / 2**20
     print(f"| {name} | {seconds(median(wardite))} | {load} | {rss:.1f} MiB | {seconds(median(wasmtime))} "
-          f"| {seconds(median(iwasm))} | {median(wardite) / median(iwasm):.1f} | {mir} |")
+          f"| {seconds(median(iwasm))} | {median(wardite) / median(wasmtime):.1f} "
+          f"| {median(wardite) / median(iwasm):.1f} | {mir} |")
 EOF
 cat "$out/env.txt" "$out/summary.md"
