@@ -31,3 +31,7 @@ python3 -B "$phases/compare_prepared.py" \
 ```
 
 基本動作は WMIR・MIR キャッシュ・スナップショットのテスト36件（481 assertions）で確認した。4 MiB Base64 decode も各8回、標準入力から復号して終了まで計測した。基準 289.30 ms、01〜03 が 289.68 ms、01〜04 が 291.52 ms（基準比 +0.8%）。全回の出力 SHA-256 を照合した。[Base64 生データ](base64-decode.json)
+
+## Wardite の stacked PR 先端での再計測
+
+Wardite `05e8170` を Spinel `a64542970` の `-O2` でビルドした。全変更入りでは、Spinel が直接呼び出し先テーブルを専用のポインタ配列として維持できるよう、そのテーブルを関数宣言時に確保する。保存済みの対照バイナリと Wasmtime 51.0.0 を同じスクリプトで交互に実行した。macOS の低電力モードは計測前後とも有効。各32回の中央値は変更前 107.62 ms、ゼロクリア変更のみ 79.87 ms、全変更入り 63.66 ms、Wasmtime 50.78 ms。[全128サンプルとバイナリの SHA-256](wardite-pr-stack.json)
