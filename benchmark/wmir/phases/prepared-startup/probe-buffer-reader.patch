@@ -1,0 +1,33 @@
+diff --git a/lib/wardite/efflorescence/mir_cache.rb b/lib/wardite/efflorescence/mir_cache.rb
+--- a/lib/wardite/efflorescence/mir_cache.rb
++++ b/lib/wardite/efflorescence/mir_cache.rb
+@@ -46,6 +46,7 @@
+         # @rbs length: Integer?
+         def initialize(bytes, offset: 0, length: nil)
+           @bytes = bytes
++          @int_view = IO::Buffer.for(bytes) if RUBY_ENGINE == "spinel"
+           @offset = offset
+           @limit = length ? offset + length : bytes.bytesize
+         end
+@@ -62,7 +63,11 @@
+         # @rbs return: Integer
+         def integer
+           ensure_bytes(4)
+-          result = @bytes.unpack1("l<", offset: @offset) #: Integer
++          result = if (view = @int_view)
++            view.get_value(:s32, @offset)
++          else
++            @bytes.unpack1("l<", offset: @offset)
++          end
+           @offset += 4
+           result
+         end
+@@ -96,7 +101,7 @@
+             offset = @offset
+             limit = offset + length * width
+             target.clear
+-            IO::Buffer.for(@bytes) do |buffer|
++            if (buffer = @int_view)
+               if width == 8
+                 while offset < limit
+                   target << buffer.get_value(:s64, offset)
