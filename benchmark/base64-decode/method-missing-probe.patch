@@ -1,0 +1,45 @@
+--- a/lib/wardite.rb
++++ b/lib/wardite.rb
+@@ -312,6 +312,7 @@
+     # @rbs args: Array[Object]
+     # @rbs return: untyped
+     def method_missing(name, *args)
++      $stderr.puts "WARDITE_MISSING_PROBE Instance"
+       if runtime.callable? name
+         runtime.call(name, args)
+       else
+@@ -782,6 +783,7 @@
+     end
+ 
+     def method_missing(name, *_args)
++      $stderr.puts "WARDITE_MISSING_PROBE Exports"
+       if self[name.to_s]
+         self[name.to_s]
+       else
+--- a/lib/wardite/efflorescence/vm.rb
++++ b/lib/wardite/efflorescence/vm.rb
+@@ -145,6 +145,7 @@
+       # @rbs *arguments: Object
+       # @rbs return: Wardite::wasmValue?
+       def method_missing(name, *arguments)
++        $stderr.puts "WARDITE_MISSING_PROBE VM"
+         callable?(name) ? call(name, arguments) : super
+       end
+ 
+--- a/exe/wardite
++++ b/exe/wardite
+@@ -3,5 +3,13 @@
+ require "wardite"
+ require "wardite/cli/cli"
+ 
++if ARGV[0] == "--probe-method-missing"
++  instance = Wardite.new(path: ARGV.fetch(1), enable_wasi: false)
++  instance.__send__(:method_missing, :add, 1, 2)
++  instance.runtime.__send__(:method_missing, :add, 1, 2)
++  instance.exports.__send__(:method_missing, :add)
++  exit 0
++end
++
+ cli = Wardite::Cli::Cli.new(ARGV)
+ cli.run
+\ No newline at end of file

@@ -1,0 +1,49 @@
+--- a/lib/wardite.rb
++++ b/lib/wardite.rb
+@@ -308,16 +308,6 @@
+       sec
+     end
+ 
+-    # @rbs name: Symbol
+-    # @rbs args: Array[Object]
+-    # @rbs return: untyped
+-    def method_missing(name, *args)
+-      if runtime.callable? name
+-        runtime.call(name, args)
+-      else
+-        super
+-      end
+-    end
+   end
+ 
+   class Type
+@@ -781,13 +771,6 @@
+       !!self[name.to_s] || super
+     end
+ 
+-    def method_missing(name, *_args)
+-      if self[name.to_s]
+-        self[name.to_s]
+-      else
+-        super
+-      end
+-    end
+   end
+ 
+   # TODO: common interface btw. WasmFunction and ExternalFunction?
+--- a/lib/wardite/efflorescence/vm.rb
++++ b/lib/wardite/efflorescence/vm.rb
+@@ -139,13 +139,6 @@
+         result = execute_public(entry, arguments)
+         return nil if result.nil?
+         unbox_result(entry.result_types.fetch(0), result)
+-      end
+-
+-      # @rbs name: Symbol
+-      # @rbs *arguments: Object
+-      # @rbs return: Wardite::wasmValue?
+-      def method_missing(name, *arguments)
+-        callable?(name) ? call(name, arguments) : super
+       end
+ 
+       # @rbs name: String|Symbol
