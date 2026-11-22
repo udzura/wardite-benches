@@ -44,3 +44,5 @@ python3 benchmark/base64-decode/measure.py --reverse --output build/decode-b.jso
 `--build` で既存の build ディレクトリを使える。Wasm の操作に wasm-tools 1.218.0、出力比較に Wasmtime 49.0.0 を使用した。公開した JSON には各回のナノ秒値、使用したバイナリ、Wasm、入出力の SHA-256 が入っている。[系列 A](m3-pro.json)・[系列 B](m3-pro-reverse.json)
 
 32文字ループ内でディスパッチ、MIR レジスタ、線形メモリのアクセス経路を個別に変えた[要因別の実測](costs/README.md)。
+
+Wardite と Spinel に実装した変更の比較は、[本実装のベンチマーク](ffi.md)にまとめた。
