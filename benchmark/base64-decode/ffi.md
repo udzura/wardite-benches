@@ -84,3 +84,27 @@ WARDITE_MIR_WORKERS=8 WARDITE_MIR_JIT=0 python3 adr/0026/cached_startup.py \
   /path/to/pr89-old/wardite /path/to/pr89-merged/wardite /path/to/ruby.wasm \
   --runs 7 > build/spinel-pin-startup.jsonl
 ```
+
+## `method_missing` を定義したときの Spinel のコスト
+
+Spinel をマージコミット `68476ebd3` に固定した。#89 の途中コミット `ae6db3c` は3つのフックを含む状態でこのコンパイラを通る。このソースを2回ビルドし、片方だけから `Instance`、`Efflorescence::VM`、`Exports` の `method_missing` 定義を削除した。`respond_to?`、`respond_to_missing?`、WASI のロード順、MIR 実装は同一。比較用に #89 の最終版 `3edaf5d` と iwasm も同じラウンドで実行した。[A/B の差分](method-missing-ab.patch)
+
+Apple M3 Pro、`-O2`、8 workers、JIT 無効。単位は ms。Base64 と PNG は12回、ruby.wasm は7回の中央値。
+
+| ワークロード | 定義あり | 3定義を削除 | 所要時間の変化 |
+|---|---:|---:|---:|
+| 4 MiB Base64 decode ループ | 180.56 | 180.75 | +0.1% |
+| 4 MiB Base64 decode 全体 | 213.55 | 201.52 | −5.6% |
+| 4 MiB Base64 encode 全体 | 301.46 | 297.18 | −1.4% |
+| 1024×1024 PNG 全体 | 257.08 | 223.30 | −13.1% |
+| ruby.wasm、MIR2 ＋スナップショット、既定 | 162.2 | 152.1 | −6.2% |
+| ruby.wasm、MIR2 のみ、eager | 733.5 | 699.9 | −4.6% |
+| ruby.wasm、MIR2 ＋スナップショット、eager | 355.6 | 323.1 | −9.2% |
+
+PNG はフックを外すと12組すべてで 28.9〜39.2 ms 短縮した。decode はループ単体でほぼ同じ時間だったが、プロセス全体では12組すべてで短縮した。[Base64 と PNG の全測定値](m3-pro-method-missing.json)・[キャッシュヒット時の全測定値](m3-pro-method-missing-startup.jsonl)
+
+フックが実際に呼ばれたかは別ビルドで確認した。3つのメソッドの入口にクラス名を標準エラーに出すプローブを追加した。各フックを1回ずつ明示的に呼ぶ対照では3種類のマーカーが出た。Base64 のループ・decode・encode と PNG の通常実行ではどれも **0回** で、標準出力の SHA-256 は全件一致した。[計時に使わなかったプローブの差分](method-missing-probe.patch)
+
+Spinel は、受け手によってメソッドが見つかるか変わる呼び出しについて、受け手が対象クラスなら `method_missing` に進む条件分岐を生成する。この A/B で `spinel -c` の出力にある `sp_class_eq(sp_poly_get_class(` は 5,335 箇所 → 0 箇所、実行ファイルは 7,010,408 → 5,404,120 バイトになった。5,335 は C ソース中の静的な出現数で、個々の分岐の実行回数は未計測。観測した差は、フックの存在によるコード生成の違いを含む。[該当する Spinel の変換](https://github.com/matz/spinel/blob/68476ebd3d91584899e8e40c42004aee591211cc/src/analyze_desugar.c#L28989-L29000)
+
+再現するには Wardite `ae6db3c` の作業ツリーを2つ用意し、片方に `git apply /path/to/method-missing-ab.patch` を適用する。両方を同じ Spinel `68476ebd3` で `make spinel` し、上の計測コマンドの Wardite バイナリを `--wardite hooks <定義あり> --wardite removed <3定義を削除> --wardite head <#89 最終版>` に置き換える。起動計測には同じ hooks と removed のバイナリをこの順に渡す。入口の確認には別の未変更ツリーで `method-missing-probe.patch` を適用し、`build/wardite --probe-method-missing test/add.wasm` で3種類のマーカーを確認してから通常のワークロードを実行する。
