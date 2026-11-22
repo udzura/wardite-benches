@@ -11,6 +11,20 @@ import tempfile
 from measure import clock, digest
 
 
+def macos_lowpowermode():
+    try:
+        result = subprocess.run(["/usr/bin/pmset", "-g"], capture_output=True, text=True)
+    except OSError:
+        return None
+    if result.returncode != 0:
+        return None
+    for line in result.stdout.splitlines():
+        fields = line.split()
+        if len(fields) == 2 and fields[0] == "lowpowermode" and fields[1] in ("0", "1"):
+            return int(fields[1])
+    return None
+
+
 def compare(builds, wasmtime, wasm, rounds, scratch):
     env = {k: v for k, v in os.environ.items()
            if not k.startswith(("WARDITE_", "SPINEL_", "WASMTIME_"))}
@@ -47,6 +61,9 @@ def compare(builds, wasmtime, wasm, rounds, scratch):
     initial = inputs()
     samples = {name: [] for name in commands}
     names = list(commands)
+    power = {}
+    if platform.system() == "Darwin":
+        power["before"] = macos_lowpowermode()
     for i in range(-2, rounds):
         start = i % len(names)
         order = names[start:] + names[:start]
@@ -60,13 +77,18 @@ def compare(builds, wasmtime, wasm, rounds, scratch):
                 raise ValueError((name, result.stdout))
             if i >= 0:
                 samples[name].append(duration)
+    if power:
+        power["after"] = macos_lowpowermode()
     if inputs() != initial:
         raise ValueError("prepared inputs changed")
-    return dict(platform=platform.platform(), guest_output=expected.decode().strip(),
+    data = dict(platform=platform.platform(), guest_output=expected.decode().strip(),
                 commands={k: list(map(str, v)) for k, v in commands.items()},
                 wasmtime=run([wasmtime, "--version"]).stdout.decode().strip(),
                 sha256={k: digest(p) for k, p in {**builds, "wasmtime": wasmtime, "wasm": wasm}.items()},
                 prepared_sha256=initial, wall_ns=samples)
+    if power:
+        data["macos_lowpowermode"] = power
+    return data
 
 
 if __name__ == "__main__":

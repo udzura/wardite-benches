@@ -35,3 +35,17 @@ python3 -B "$phases/compare_prepared.py" \
 ## Wardite の stacked PR 先端での再計測
 
 Wardite `05e8170` を Spinel `a64542970` の `-O2` でビルドした。全変更入りでは、Spinel が直接呼び出し先テーブルを専用のポインタ配列として維持できるよう、そのテーブルを関数宣言時に確保する。保存済みの対照バイナリと Wasmtime 51.0.0 を同じスクリプトで交互に実行した。macOS の低電力モードは計測前後とも有効。各32回の中央値は変更前 107.62 ms、ゼロクリア変更のみ 79.87 ms、全変更入り 63.66 ms、Wasmtime 50.78 ms。[全128サンプルとバイナリの SHA-256](wardite-pr-stack.json)
+
+### 全変更入り Wardite と Wasmtime の2条件での最終計測
+
+同じ Mac で Ruby 4.0.9 を起動し、全変更入り Wardite の WMIR＋スナップショットと Wasmtime 51.0.0 の cwasm を比較した。表の時間は各32回の中央値（ms）。各行の比は同じ計測での Wardite ÷ Wasmtime。
+
+| 計測 | macOS 低電力モード | Wardite | Wasmtime | 比 |
+|---|---|---:|---:|---:|
+| [初回・64サンプル](two-engine-power-off.json) | OFF（前後で確認） | 37.332 | 29.037 | 1.29 |
+| 手元での再現・報告値 | OFF | 35.194 | 27.893 | 1.26 |
+| [手元での再現・64サンプル](two-engine-power-on.json) | ON | 59.529 | 45.995 | 1.29 |
+
+低電力モード OFF では2回の独立した計測で Wardite が目標の 39 ms を下回った。手元での OFF と ON を比べると、ON の起動時間は Wardite が 1.69 倍、Wasmtime が 1.65 倍だった。手元の2行の電力モードは実行者の報告による。OFF の再現値はコンソールに表示された中央値を記録した。保存した2本の JSON では、両ランタイムと入力 Wasm の SHA-256、ゲスト出力が一致する。
+
+今後の macOS 計測では `compare_prepared.py` が計測ループの前後に `pmset -g` を読み、`macos_lowpowermode` に OFF を 0、ON を 1、取得できなかった場合を null として保存する。比較表には電力モードを併記する。
