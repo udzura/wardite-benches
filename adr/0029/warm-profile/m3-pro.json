@@ -1,0 +1,783 @@
+{
+  "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+  "ruby": "ruby 4.0.9 (2026-10-23 revision 3e93b23afc) +PRISM [wasm32-wasi]",
+  "samples": [
+    {
+      "round": 1,
+      "build": "release",
+      "wall_ns": 147633000
+    },
+    {
+      "round": 1,
+      "build": "probe",
+      "wall_ns": 146974834,
+      "ns": {
+        "mir_key": 48131000,
+        "mir_read": 24708000,
+        "mir_lazy_snapshot": 6598000,
+        "mir_lazy_guest": 152000,
+        "snapshot": 44761000,
+        "guest": 106000,
+        "wasm_read": 3133000,
+        "sections_and_checks": 9120000,
+        "instance_and_link": 2330000,
+        "outside": 7935834
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 2,
+      "build": "probe",
+      "wall_ns": 138606958,
+      "ns": {
+        "mir_key": 44842000,
+        "mir_read": 23889000,
+        "mir_lazy_snapshot": 6449000,
+        "mir_lazy_guest": 136000,
+        "snapshot": 41504000,
+        "guest": 99000,
+        "wasm_read": 3126000,
+        "sections_and_checks": 8723000,
+        "instance_and_link": 2190000,
+        "outside": 7648958
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 2,
+      "build": "release",
+      "wall_ns": 159842750
+    },
+    {
+      "round": 3,
+      "build": "release",
+      "wall_ns": 151966458
+    },
+    {
+      "round": 3,
+      "build": "probe",
+      "wall_ns": 151736500,
+      "ns": {
+        "mir_key": 48171000,
+        "mir_read": 26682000,
+        "mir_lazy_snapshot": 6797000,
+        "mir_lazy_guest": 157000,
+        "snapshot": 45022000,
+        "guest": 117000,
+        "wasm_read": 3416000,
+        "sections_and_checks": 9460000,
+        "instance_and_link": 2442000,
+        "outside": 9472500
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 4,
+      "build": "probe",
+      "wall_ns": 153954084,
+      "ns": {
+        "mir_key": 47793000,
+        "mir_read": 28372000,
+        "mir_lazy_snapshot": 6510000,
+        "mir_lazy_guest": 163000,
+        "snapshot": 45359000,
+        "guest": 108000,
+        "wasm_read": 3318000,
+        "sections_and_checks": 9735000,
+        "instance_and_link": 2434000,
+        "outside": 10162084
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 4,
+      "build": "release",
+      "wall_ns": 153585791
+    },
+    {
+      "round": 5,
+      "build": "release",
+      "wall_ns": 150554917
+    },
+    {
+      "round": 5,
+      "build": "probe",
+      "wall_ns": 147344375,
+      "ns": {
+        "mir_key": 46248000,
+        "mir_read": 26757000,
+        "mir_lazy_snapshot": 6701000,
+        "mir_lazy_guest": 152000,
+        "snapshot": 44304000,
+        "guest": 106000,
+        "wasm_read": 3313000,
+        "sections_and_checks": 9017000,
+        "instance_and_link": 2273000,
+        "outside": 8473375
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 6,
+      "build": "probe",
+      "wall_ns": 148470250,
+      "ns": {
+        "mir_key": 46704000,
+        "mir_read": 26614000,
+        "mir_lazy_snapshot": 6527000,
+        "mir_lazy_guest": 159000,
+        "snapshot": 44379000,
+        "guest": 117000,
+        "wasm_read": 3501000,
+        "sections_and_checks": 9989000,
+        "instance_and_link": 2250000,
+        "outside": 8230250
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 6,
+      "build": "release",
+      "wall_ns": 147027209
+    },
+    {
+      "round": 7,
+      "build": "release",
+      "wall_ns": 139945833
+    },
+    {
+      "round": 7,
+      "build": "probe",
+      "wall_ns": 145883167,
+      "ns": {
+        "mir_key": 48111000,
+        "mir_read": 24509000,
+        "mir_lazy_snapshot": 6603000,
+        "mir_lazy_guest": 148000,
+        "snapshot": 44099000,
+        "guest": 106000,
+        "wasm_read": 2914000,
+        "sections_and_checks": 9204000,
+        "instance_and_link": 2300000,
+        "outside": 7889167
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 8,
+      "build": "probe",
+      "wall_ns": 143149542,
+      "ns": {
+        "mir_key": 44821000,
+        "mir_read": 24779000,
+        "mir_lazy_snapshot": 6778000,
+        "mir_lazy_guest": 138000,
+        "snapshot": 43224000,
+        "guest": 102000,
+        "wasm_read": 2976000,
+        "sections_and_checks": 8819000,
+        "instance_and_link": 2241000,
+        "outside": 9271542
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 8,
+      "build": "release",
+      "wall_ns": 148251000
+    },
+    {
+      "round": 9,
+      "build": "release",
+      "wall_ns": 142783459
+    },
+    {
+      "round": 9,
+      "build": "probe",
+      "wall_ns": 142314500,
+      "ns": {
+        "mir_key": 44827000,
+        "mir_read": 24208000,
+        "mir_lazy_snapshot": 6710000,
+        "mir_lazy_guest": 140000,
+        "snapshot": 43024000,
+        "guest": 105000,
+        "wasm_read": 2900000,
+        "sections_and_checks": 8849000,
+        "instance_and_link": 2265000,
+        "outside": 9286500
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 10,
+      "build": "probe",
+      "wall_ns": 149578250,
+      "ns": {
+        "mir_key": 47419000,
+        "mir_read": 25992000,
+        "mir_lazy_snapshot": 6657000,
+        "mir_lazy_guest": 151000,
+        "snapshot": 44990000,
+        "guest": 104000,
+        "wasm_read": 2955000,
+        "sections_and_checks": 9218000,
+        "instance_and_link": 2395000,
+        "outside": 9697250
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 10,
+      "build": "release",
+      "wall_ns": 143925209
+    },
+    {
+      "round": 11,
+      "build": "release",
+      "wall_ns": 146137459
+    },
+    {
+      "round": 11,
+      "build": "probe",
+      "wall_ns": 148037833,
+      "ns": {
+        "mir_key": 45937000,
+        "mir_read": 25271000,
+        "mir_lazy_snapshot": 6414000,
+        "mir_lazy_guest": 184000,
+        "snapshot": 45123000,
+        "guest": 116000,
+        "wasm_read": 2979000,
+        "sections_and_checks": 10042000,
+        "instance_and_link": 2604000,
+        "outside": 9367833
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 12,
+      "build": "probe",
+      "wall_ns": 143441291,
+      "ns": {
+        "mir_key": 47156000,
+        "mir_read": 24409000,
+        "mir_lazy_snapshot": 6484000,
+        "mir_lazy_guest": 142000,
+        "snapshot": 42439000,
+        "guest": 101000,
+        "wasm_read": 3042000,
+        "sections_and_checks": 8895000,
+        "instance_and_link": 2258000,
+        "outside": 8515291
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 12,
+      "build": "release",
+      "wall_ns": 140375917
+    },
+    {
+      "round": 13,
+      "build": "release",
+      "wall_ns": 146800458
+    },
+    {
+      "round": 13,
+      "build": "probe",
+      "wall_ns": 148972458,
+      "ns": {
+        "mir_key": 47985000,
+        "mir_read": 24759000,
+        "mir_lazy_snapshot": 6620000,
+        "mir_lazy_guest": 152000,
+        "snapshot": 45397000,
+        "guest": 110000,
+        "wasm_read": 2886000,
+        "sections_and_checks": 9049000,
+        "instance_and_link": 2309000,
+        "outside": 9705458
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 14,
+      "build": "probe",
+      "wall_ns": 143489791,
+      "ns": {
+        "mir_key": 45987000,
+        "mir_read": 25516000,
+        "mir_lazy_snapshot": 6487000,
+        "mir_lazy_guest": 151000,
+        "snapshot": 42893000,
+        "guest": 110000,
+        "wasm_read": 3010000,
+        "sections_and_checks": 8823000,
+        "instance_and_link": 2255000,
+        "outside": 8257791
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 14,
+      "build": "release",
+      "wall_ns": 145578166
+    },
+    {
+      "round": 15,
+      "build": "release",
+      "wall_ns": 142835709
+    },
+    {
+      "round": 15,
+      "build": "probe",
+      "wall_ns": 149942458,
+      "ns": {
+        "mir_key": 46141000,
+        "mir_read": 27284000,
+        "mir_lazy_snapshot": 6736000,
+        "mir_lazy_guest": 141000,
+        "snapshot": 44699000,
+        "guest": 108000,
+        "wasm_read": 3190000,
+        "sections_and_checks": 9005000,
+        "instance_and_link": 2426000,
+        "outside": 10212458
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 16,
+      "build": "probe",
+      "wall_ns": 232441459,
+      "ns": {
+        "mir_key": 62539000,
+        "mir_read": 49060000,
+        "mir_lazy_snapshot": 8188000,
+        "mir_lazy_guest": 206000,
+        "snapshot": 69746000,
+        "guest": 123000,
+        "wasm_read": 3393000,
+        "sections_and_checks": 23598000,
+        "instance_and_link": 5258000,
+        "outside": 10330459
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 16,
+      "build": "release",
+      "wall_ns": 151973459
+    },
+    {
+      "round": 17,
+      "build": "release",
+      "wall_ns": 155942166
+    },
+    {
+      "round": 17,
+      "build": "probe",
+      "wall_ns": 147969250,
+      "ns": {
+        "mir_key": 47284000,
+        "mir_read": 25666000,
+        "mir_lazy_snapshot": 6529000,
+        "mir_lazy_guest": 158000,
+        "snapshot": 43646000,
+        "guest": 108000,
+        "wasm_read": 3813000,
+        "sections_and_checks": 9024000,
+        "instance_and_link": 2327000,
+        "outside": 9414250
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 18,
+      "build": "probe",
+      "wall_ns": 143241875,
+      "ns": {
+        "mir_key": 45980000,
+        "mir_read": 24581000,
+        "mir_lazy_snapshot": 6587000,
+        "mir_lazy_guest": 143000,
+        "snapshot": 42782000,
+        "guest": 105000,
+        "wasm_read": 3397000,
+        "sections_and_checks": 9019000,
+        "instance_and_link": 2220000,
+        "outside": 8427875
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 18,
+      "build": "release",
+      "wall_ns": 145044459
+    },
+    {
+      "round": 19,
+      "build": "release",
+      "wall_ns": 144379042
+    },
+    {
+      "round": 19,
+      "build": "probe",
+      "wall_ns": 145040417,
+      "ns": {
+        "mir_key": 47254000,
+        "mir_read": 24944000,
+        "mir_lazy_snapshot": 6503000,
+        "mir_lazy_guest": 137000,
+        "snapshot": 43209000,
+        "guest": 109000,
+        "wasm_read": 3263000,
+        "sections_and_checks": 9476000,
+        "instance_and_link": 2421000,
+        "outside": 7724417
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 20,
+      "build": "probe",
+      "wall_ns": 144554208,
+      "ns": {
+        "mir_key": 46844000,
+        "mir_read": 24904000,
+        "mir_lazy_snapshot": 6513000,
+        "mir_lazy_guest": 144000,
+        "snapshot": 43111000,
+        "guest": 102000,
+        "wasm_read": 3370000,
+        "sections_and_checks": 9571000,
+        "instance_and_link": 2305000,
+        "outside": 7690208
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 20,
+      "build": "release",
+      "wall_ns": 147608000
+    },
+    {
+      "round": 21,
+      "build": "release",
+      "wall_ns": 160197708
+    },
+    {
+      "round": 21,
+      "build": "probe",
+      "wall_ns": 168911667,
+      "ns": {
+        "mir_key": 58166000,
+        "mir_read": 25917000,
+        "mir_lazy_snapshot": 6743000,
+        "mir_lazy_guest": 168000,
+        "snapshot": 44620000,
+        "guest": 120000,
+        "wasm_read": 6796000,
+        "sections_and_checks": 9680000,
+        "instance_and_link": 2516000,
+        "outside": 14185667
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 22,
+      "build": "probe",
+      "wall_ns": 145001291,
+      "ns": {
+        "mir_key": 47656000,
+        "mir_read": 25157000,
+        "mir_lazy_snapshot": 6514000,
+        "mir_lazy_guest": 160000,
+        "snapshot": 42880000,
+        "guest": 117000,
+        "wasm_read": 3215000,
+        "sections_and_checks": 9336000,
+        "instance_and_link": 2263000,
+        "outside": 7703291
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 22,
+      "build": "release",
+      "wall_ns": 146922875
+    },
+    {
+      "round": 23,
+      "build": "release",
+      "wall_ns": 143080208
+    },
+    {
+      "round": 23,
+      "build": "probe",
+      "wall_ns": 146635542,
+      "ns": {
+        "mir_key": 47985000,
+        "mir_read": 24748000,
+        "mir_lazy_snapshot": 6622000,
+        "mir_lazy_guest": 147000,
+        "snapshot": 44534000,
+        "guest": 112000,
+        "wasm_read": 2960000,
+        "sections_and_checks": 9224000,
+        "instance_and_link": 2370000,
+        "outside": 7933542
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 24,
+      "build": "probe",
+      "wall_ns": 146439083,
+      "ns": {
+        "mir_key": 48088000,
+        "mir_read": 24499000,
+        "mir_lazy_snapshot": 6576000,
+        "mir_lazy_guest": 145000,
+        "snapshot": 44579000,
+        "guest": 110000,
+        "wasm_read": 2867000,
+        "sections_and_checks": 9251000,
+        "instance_and_link": 2284000,
+        "outside": 8040083
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 24,
+      "build": "release",
+      "wall_ns": 146076250
+    },
+    {
+      "round": 25,
+      "build": "release",
+      "wall_ns": 148374125
+    },
+    {
+      "round": 25,
+      "build": "probe",
+      "wall_ns": 148103250,
+      "ns": {
+        "mir_key": 48021000,
+        "mir_read": 24787000,
+        "mir_lazy_snapshot": 6655000,
+        "mir_lazy_guest": 150000,
+        "snapshot": 45225000,
+        "guest": 108000,
+        "wasm_read": 3433000,
+        "sections_and_checks": 9279000,
+        "instance_and_link": 2329000,
+        "outside": 8116250
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 26,
+      "build": "probe",
+      "wall_ns": 147369334,
+      "ns": {
+        "mir_key": 48164000,
+        "mir_read": 24416000,
+        "mir_lazy_snapshot": 6653000,
+        "mir_lazy_guest": 151000,
+        "snapshot": 44557000,
+        "guest": 111000,
+        "wasm_read": 3232000,
+        "sections_and_checks": 9247000,
+        "instance_and_link": 2291000,
+        "outside": 8547334
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 26,
+      "build": "release",
+      "wall_ns": 148536917
+    },
+    {
+      "round": 27,
+      "build": "release",
+      "wall_ns": 149467750
+    },
+    {
+      "round": 27,
+      "build": "probe",
+      "wall_ns": 147816209,
+      "ns": {
+        "mir_key": 47603000,
+        "mir_read": 25047000,
+        "mir_lazy_snapshot": 6507000,
+        "mir_lazy_guest": 155000,
+        "snapshot": 44959000,
+        "guest": 118000,
+        "wasm_read": 3171000,
+        "sections_and_checks": 9893000,
+        "instance_and_link": 2320000,
+        "outside": 8043209
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 28,
+      "build": "probe",
+      "wall_ns": 146182250,
+      "ns": {
+        "mir_key": 44998000,
+        "mir_read": 25564000,
+        "mir_lazy_snapshot": 7033000,
+        "mir_lazy_guest": 152000,
+        "snapshot": 43622000,
+        "guest": 108000,
+        "wasm_read": 3196000,
+        "sections_and_checks": 10017000,
+        "instance_and_link": 2229000,
+        "outside": 9263250
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 28,
+      "build": "release",
+      "wall_ns": 150047000
+    },
+    {
+      "round": 29,
+      "build": "release",
+      "wall_ns": 145658416
+    },
+    {
+      "round": 29,
+      "build": "probe",
+      "wall_ns": 147809167,
+      "ns": {
+        "mir_key": 47167000,
+        "mir_read": 25678000,
+        "mir_lazy_snapshot": 6791000,
+        "mir_lazy_guest": 146000,
+        "snapshot": 43962000,
+        "guest": 116000,
+        "wasm_read": 3958000,
+        "sections_and_checks": 9120000,
+        "instance_and_link": 2397000,
+        "outside": 8474167
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 30,
+      "build": "probe",
+      "wall_ns": 150681208,
+      "ns": {
+        "mir_key": 47319000,
+        "mir_read": 25654000,
+        "mir_lazy_snapshot": 6649000,
+        "mir_lazy_guest": 167000,
+        "snapshot": 45218000,
+        "guest": 114000,
+        "wasm_read": 3794000,
+        "sections_and_checks": 9641000,
+        "instance_and_link": 2524000,
+        "outside": 9601208
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 30,
+      "build": "release",
+      "wall_ns": 145460042
+    },
+    {
+      "round": 31,
+      "build": "release",
+      "wall_ns": 150849041
+    },
+    {
+      "round": 31,
+      "build": "probe",
+      "wall_ns": 146551208,
+      "ns": {
+        "mir_key": 48823000,
+        "mir_read": 25260000,
+        "mir_lazy_snapshot": 6403000,
+        "mir_lazy_guest": 145000,
+        "snapshot": 42766000,
+        "guest": 112000,
+        "wasm_read": 3166000,
+        "sections_and_checks": 9518000,
+        "instance_and_link": 2313000,
+        "outside": 8045208
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 32,
+      "build": "probe",
+      "wall_ns": 151125458,
+      "ns": {
+        "mir_key": 48582000,
+        "mir_read": 26238000,
+        "mir_lazy_snapshot": 6562000,
+        "mir_lazy_guest": 152000,
+        "snapshot": 44399000,
+        "guest": 124000,
+        "wasm_read": 3421000,
+        "sections_and_checks": 9673000,
+        "instance_and_link": 2432000,
+        "outside": 9542458
+      },
+      "lazy_snapshot_calls": 10,
+      "lazy_guest_calls": 12
+    },
+    {
+      "round": 32,
+      "build": "release",
+      "wall_ns": 149323708
+    }
+  ],
+  "sha256": {
+    "release": "59cf6b7574c0d0ba66c00e99794f99ffea740a71b93e41ccf4e2fc4d2a818a1f",
+    "probe": "fa7a7219f15dbe238fca4cb1e881fb7927b64d55882bed7be4dae925251718f1",
+    "wasm": "cb740da111ff6ef951f51fac3296466777cc7b9b48d327f8d8089edeae71a7a4"
+  },
+  "cache_bytes": {
+    ".mir2": 90800699,
+    ".snap": 8250276
+  }
+}

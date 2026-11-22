@@ -1,0 +1,136 @@
+--- a/lib/wardite/cli/cli.rb
++++ b/lib/wardite/cli/cli.rb
+@@ -216,9 +216,11 @@
+           cache = runtime.mir_cache
+           if cache && instance.wasi && !instance.start_section
+             require "wardite/efflorescence/snapshot" unless RUBY_ENGINE == "spinel"
++            StartupProbe.startup_probe_mark(StartupProbe::SNAPSHOT)
+             recorder = Wardite::Efflorescence::Snapshot.new(directory, instance, cache)
+             frames = runtime.mir_cache_hit ? recorder.restore(runtime) : nil
+             if frames
++              StartupProbe.startup_probe_mark(StartupProbe::REBUILD_FRAMES)
+               runtime.resume(frames)
+               return
+             end
+--- a/lib/wardite/efflorescence/mir_cache.rb
++++ b/lib/wardite/efflorescence/mir_cache.rb
+@@ -593,7 +593,9 @@
+         return unless function.cache_pending
+ 
+         decoder = @decoder || raise(Invalid)
++        StartupProbe.startup_probe_mark(StartupProbe::LAZY_BEGIN)
+         decoder.restore(function)
++        StartupProbe.startup_probe_mark(StartupProbe::LAZY_END)
+       rescue Invalid
+         raise Wardite::EvalError, "invalid MIR2 function #{function.index} in #{@path}. Delete this cache file and retry."
+       end
+--- a/lib/wardite/efflorescence/vm.rb
++++ b/lib/wardite/efflorescence/vm.rb
+@@ -163,7 +163,9 @@
+           frame.pc = state.pc
+           frames << frame
+         end
++        StartupProbe.startup_probe_mark(StartupProbe::RUN_FRAMES)
+         run_frames(pools, frames, 0)
++        StartupProbe.startup_probe_mark(StartupProbe::FINISHED)
+         nil
+       end
+ 
+--- a/lib/wardite/efflorescence/wasi.rb
++++ b/lib/wardite/efflorescence/wasi.rb
+@@ -44,6 +44,7 @@
+       # @rbs sources: Array[Integer]?
+       # @rbs return: bot
+       def proc_exit_from_registers(store, values, sources)
++        StartupProbe.startup_probe_mark(StartupProbe::FINISHED)
+         exit(values.fetch((sources || PROC_EXIT_ARGUMENTS).fetch(0)))
+       end
+ 
+--- a/lib/wardite/load.rb
++++ b/lib/wardite/load.rb
+@@ -393,10 +393,13 @@
+       if mir_cache && !mir_profile
+         require "wardite/efflorescence/mir_cache" unless RUBY_ENGINE == "spinel"
+         # Hash the same bytes that the decoder will see, even if the file changes.
++        StartupProbe.startup_probe_mark(StartupProbe::READ_WASM)
+         bytes = buf.read || "".b
+         configuration = Efflorescence::Configuration.new(disabled_optimizations, enabled: enabled_optimizations, cse: mir_cse)
+         disabled_optimizations = configuration.disabled
++        StartupProbe.startup_probe_mark(StartupProbe::MIR_KEY)
+         cache = Efflorescence::MIRCache.new(mir_cache, bytes, configuration, verify: mir_cache_verify, eager: mir_cache_eager)
++        StartupProbe.startup_probe_mark(StartupProbe::WASM_SECTIONS)
+         @buf = StringIO.new(bytes)
+       end
+ 
+--- a/lib/wardite/wasi.rb
++++ b/lib/wardite/wasi.rb
+@@ -729,6 +729,7 @@
+     # @rbs return: Object
+     def proc_exit(store, args)
+       exit_code = args[0].value
++      StartupProbe.startup_probe_mark(StartupProbe::FINISHED)
+       exit(exit_code)
+     end
+ 
+--- a/lib/wardite.rb
++++ b/lib/wardite.rb
+@@ -1,5 +1,49 @@
+ # frozen_string_literal: true
+ # rbs_inline: enabled
++
++# Benchmark-only monotonic timestamps. Emit one record after the guest has run.
++module StartupProbe
++  READ_WASM = 1
++  MIR_KEY = 2
++  WASM_SECTIONS = 3
++  MIR_READ = 4
++  INSTANCE = 5
++  SNAPSHOT = 6
++  REBUILD_FRAMES = 7
++  RUN_FRAMES = 8
++  FINISHED = 9
++  LAZY_BEGIN = 10
++  LAZY_END = 11
++  ffi_source <<~C
++    #include <time.h>
++    #include <stdio.h>
++    static unsigned long long stamp[10], lazy_ns[10], lazy_calls[10], lazy_start;
++    static int stage;
++    int startup_probe_mark(int event) {
++      struct timespec ts;
++      clock_gettime(CLOCK_MONOTONIC, &ts);
++      unsigned long long now = (unsigned long long)ts.tv_sec * 1000000000 + ts.tv_nsec;
++      if (event == 10) {
++        lazy_start = now;
++      } else if (event == 11) {
++        lazy_ns[stage] += now - lazy_start;
++        lazy_calls[stage]++;
++      } else if (stage != 9) {
++        stage = event;
++        stamp[stage] = now;
++        if (stage == 9) {
++          fprintf(stderr, "WARDITE_STARTUP_NS");
++          for (int i = 1; i <= 9; i++) {
++            fprintf(stderr, " %llu/%llu/%llu", stamp[i], lazy_ns[i], lazy_calls[i]);
++          }
++          fputc(10, stderr);
++        }
++      }
++      return 0;
++    }
++  C
++  ffi_func :startup_probe_mark, [:int], :int
++end
+ 
+ require_relative "wardite/version"
+ require_relative "wardite/leb128"
+@@ -64,7 +108,9 @@
+       check_module_features
+       cached_functions = nil #: Array[Efflorescence::Function]?
+       if mir_cache && !mir_profile
++        StartupProbe.startup_probe_mark(StartupProbe::MIR_READ)
+         cached_functions = mir_cache.read_functions(self)
++        StartupProbe.startup_probe_mark(StartupProbe::INSTANCE)
+       end
+       types = type_section
+       code_section&.func_codes&.each do |body|
