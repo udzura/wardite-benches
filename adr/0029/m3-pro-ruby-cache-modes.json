@@ -1,0 +1,373 @@
+{
+  "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+  "wardite_settings": "CLI defaults",
+  "ruby_description": "ruby 4.0.9 (2026-10-23 revision 3e93b23afc) +PRISM [wasm32-wasi]",
+  "module_sha256": "cb740da111ff6ef951f51fac3296466777cc7b9b48d327f8d8089edeae71a7a4",
+  "binary_sha256": {
+    "wardite": "59cf6b7574c0d0ba66c00e99794f99ffea740a71b93e41ccf4e2fc4d2a818a1f",
+    "iwasm": "87461526b3afdf638f1b64f312d15838e4e48e1a1e6a29bb8cb67030d38e9baa",
+    "wasmtime": "e14e404d8238ae24edad2955ea3cf978537fa34427ec764762414975a9872917"
+  },
+  "samples": [
+    {
+      "engine": "wardite-default",
+      "round": 1,
+      "ns": 2134828708
+    },
+    {
+      "engine": "iwasm",
+      "round": 1,
+      "ns": 304975166
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 1,
+      "ns": 5966791459
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 1,
+      "ns": 99610541
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 1,
+      "ns": 146201375
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 1,
+      "ns": 32367792
+    },
+    {
+      "engine": "iwasm",
+      "round": 2,
+      "ns": 308940833
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 2,
+      "ns": 6046823166
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 2,
+      "ns": 97592125
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 2,
+      "ns": 145588500
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 2,
+      "ns": 29961875
+    },
+    {
+      "engine": "wardite-default",
+      "round": 2,
+      "ns": 2168548292
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 3,
+      "ns": 6310363458
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 3,
+      "ns": 101568000
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 3,
+      "ns": 159927125
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 3,
+      "ns": 34405125
+    },
+    {
+      "engine": "wardite-default",
+      "round": 3,
+      "ns": 2190581875
+    },
+    {
+      "engine": "iwasm",
+      "round": 3,
+      "ns": 304901333
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 4,
+      "ns": 101826708
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 4,
+      "ns": 141440167
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 4,
+      "ns": 28984334
+    },
+    {
+      "engine": "wardite-default",
+      "round": 4,
+      "ns": 2163680625
+    },
+    {
+      "engine": "iwasm",
+      "round": 4,
+      "ns": 390937333
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 4,
+      "ns": 6742693209
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 5,
+      "ns": 142619834
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 5,
+      "ns": 29437209
+    },
+    {
+      "engine": "wardite-default",
+      "round": 5,
+      "ns": 2147868000
+    },
+    {
+      "engine": "iwasm",
+      "round": 5,
+      "ns": 309681584
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 5,
+      "ns": 6152013584
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 5,
+      "ns": 101017333
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 6,
+      "ns": 31403917
+    },
+    {
+      "engine": "wardite-default",
+      "round": 6,
+      "ns": 2160017833
+    },
+    {
+      "engine": "iwasm",
+      "round": 6,
+      "ns": 319595459
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 6,
+      "ns": 6275942584
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 6,
+      "ns": 103921834
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 6,
+      "ns": 151840625
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 7,
+      "ns": 31360000
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 7,
+      "ns": 156873125
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 7,
+      "ns": 104622416
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 7,
+      "ns": 6140709917
+    },
+    {
+      "engine": "iwasm",
+      "round": 7,
+      "ns": 309943291
+    },
+    {
+      "engine": "wardite-default",
+      "round": 7,
+      "ns": 2111696333
+    },
+    {
+      "engine": "wardite-default",
+      "round": 8,
+      "ns": 2103714375
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 8,
+      "ns": 29505000
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 8,
+      "ns": 145396417
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 8,
+      "ns": 101536458
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 8,
+      "ns": 5780832250
+    },
+    {
+      "engine": "iwasm",
+      "round": 8,
+      "ns": 311025166
+    },
+    {
+      "engine": "iwasm",
+      "round": 9,
+      "ns": 309334416
+    },
+    {
+      "engine": "wardite-default",
+      "round": 9,
+      "ns": 2111133375
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 9,
+      "ns": 29901459
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 9,
+      "ns": 149578125
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 9,
+      "ns": 101889334
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 9,
+      "ns": 5750854583
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 10,
+      "ns": 6296738667
+    },
+    {
+      "engine": "iwasm",
+      "round": 10,
+      "ns": 319482875
+    },
+    {
+      "engine": "wardite-default",
+      "round": 10,
+      "ns": 2116321583
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 10,
+      "ns": 30612041
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 10,
+      "ns": 147356250
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 10,
+      "ns": 102357375
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 11,
+      "ns": 102453167
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 11,
+      "ns": 5837294375
+    },
+    {
+      "engine": "iwasm",
+      "round": 11,
+      "ns": 314801833
+    },
+    {
+      "engine": "wardite-default",
+      "round": 11,
+      "ns": 2110498042
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 11,
+      "ns": 32514000
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 11,
+      "ns": 147948458
+    },
+    {
+      "engine": "wardite-snapshot",
+      "round": 12,
+      "ns": 149251209
+    },
+    {
+      "engine": "wasmtime-auto-hit",
+      "round": 12,
+      "ns": 102364916
+    },
+    {
+      "engine": "wasmtime-auto-miss",
+      "round": 12,
+      "ns": 5794617834
+    },
+    {
+      "engine": "iwasm",
+      "round": 12,
+      "ns": 314348083
+    },
+    {
+      "engine": "wardite-default",
+      "round": 12,
+      "ns": 2134604167
+    },
+    {
+      "engine": "wasmtime-precompiled",
+      "round": 12,
+      "ns": 31085375
+    }
+  ]
+}
