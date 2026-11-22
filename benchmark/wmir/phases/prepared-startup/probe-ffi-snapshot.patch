@@ -1,0 +1,69 @@
+diff --git a/lib/wardite/efflorescence/snapshot.rb b/lib/wardite/efflorescence/snapshot.rb
+--- a/lib/wardite/efflorescence/snapshot.rb
++++ b/lib/wardite/efflorescence/snapshot.rb
+@@ -157,8 +157,8 @@
+         current = memory ? memory.current : 0
+         raise MIRCache::Invalid unless (memory || pages == 0) && pages >= current
+         raise MIRCache::Invalid unless used.all? { |page| page >= 0 && page < pages }
+-        contents = reader.bytes(used.size * PAGE_SIZE)
+-        reader.finish
++        data_offset = reader.offset
++        raise MIRCache::Invalid unless payload.bytesize - data_offset == used.size * PAGE_SIZE
+ 
+         if memory
+           if RUBY_ENGINE == "spinel" && pages > current
+@@ -167,13 +167,17 @@
+           elsif pages > current
+             raise MIRCache::Invalid if memory.grow(pages - current) < 0
+           end
+-          used_pages = Array.new(pages, false)
+-          used.each_with_index do |page, i|
+-            used_pages[page] = true
+-            memory.write_bytes(page * PAGE_SIZE, contents.byteslice(i * PAGE_SIZE, PAGE_SIZE) || raise(MIRCache::Invalid))
+-          end
+-          # Newly grown pages are already zero. Existing pages can contain initial data.
+-          current.times { |page| memory.write_bytes(page * PAGE_SIZE, ZERO_PAGE) unless used_pages[page] }
++          if RUBY_ENGINE == "spinel" && current.zero?
++            ok = SpinelInteger.wardite_copy_snapshot_pages(memory.buffer, memory.bytesize, payload, payload.bytesize, data_offset, used, used.size)
++            raise MIRCache::Invalid if ok == 0
++          else
++            used_pages = Array.new(current, false)
++            used.each_with_index do |page, i|
++              used_pages[page] = true if page < current
++              memory.write_bytes(page * PAGE_SIZE, payload.byteslice(data_offset + i * PAGE_SIZE, PAGE_SIZE) || raise(MIRCache::Invalid))
++            end
++            current.times { |page| memory.write_bytes(page * PAGE_SIZE, ZERO_PAGE) unless used_pages[page] }
++          end
+         end
+         access = StoreAccess.new(store)
+         store.globals.each_with_index do |global, index|
+diff --git a/lib/wardite/efflorescence/spinel_integer.rb b/lib/wardite/efflorescence/spinel_integer.rb
+--- a/lib/wardite/efflorescence/spinel_integer.rb
++++ b/lib/wardite/efflorescence/spinel_integer.rb
+@@ -13,6 +13,18 @@
+ 
+       ffi_source <<~C
+         #include <stdint.h>
++        #include <string.h>
++
++        int wardite_copy_snapshot_pages(void *memory, size_t size, const char *payload, size_t length,
++                                        size_t offset, const int64_t *used, size_t count) {
++          const size_t page = 65536;
++          if (offset > length || (length - offset) % page || count != (length - offset) / page) return 0;
++          for (size_t i = 0; i < count; ++i)
++            if (used[i] < 0 || (uint64_t)used[i] >= size / page) return 0;
++          for (size_t i = 0; i < count; ++i)
++            memcpy((char *)memory + (size_t)used[i] * page, payload + offset + i * page, page);
++          return 1;
++        }
+ 
+         int64_t wardite_i64_shl(int64_t bits, int64_t count) {
+           return (int64_t)((uint64_t)bits << ((uint64_t)count & 63));
+@@ -33,6 +45,7 @@
+           return (int)((byte << 8) | bytes[index]);
+         }
+       C
++      ffi_func :wardite_copy_snapshot_pages, [:buffer_inout, :size_t, :binstr, :size_t, :size_t, :int_array, :size_t], :int
+       ffi_func :wardite_i64_shl, [:int64, :int64], :int64
+       ffi_func :wardite_i64_shr_u, [:int64, :int64], :int64
+       ffi_func :wardite_byte_lookup, [:buffer_in, :size_t, :uint32, :uint32], :int

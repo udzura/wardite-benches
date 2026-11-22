@@ -1,0 +1,83 @@
+diff --git a/lib/wardite/efflorescence/mir_cache.rb b/lib/wardite/efflorescence/mir_cache.rb
+--- a/lib/wardite/efflorescence/mir_cache.rb
++++ b/lib/wardite/efflorescence/mir_cache.rb
+@@ -237,6 +237,25 @@
+           when I32_XOR_SHR_U_IMM, I32_XOR_SHL_IMM then :shift
+           end
+         end.freeze #: Array[Symbol?]
++
++        CHECKS = Opcode::NAMES.each_index.map do |opcode|
++          kind = EXTRA_OPERANDS[opcode]
++          rule = case kind
++          when nil then 1
++          when :branch then 2
++          when :conditional then 3
++          when :address then 4
++          when :immediate then 5
++          when :extract then 6
++          when :shift then 7
++          else 0
++          end
++          if opcode == PROFILE || opcode >= I32_TABLE_STORE8
++            0
++          else
++            (rule << 3) | REGISTER_MASKS.fetch(opcode)
++          end
++        end.pack("C*")
+ 
+         # @rbs payload: String
+         # @rbs instance: Wardite::Instance
+@@ -460,6 +479,11 @@
+           register_count = function.register_count
+           pc = 0
+           while pc < code.size
++            if RUBY_ENGINE == "spinel"
++              pc = SpinelInteger.wardite_check_mir_run(code, code.size, pc, register_count, CHECKS, CHECKS.bytesize, @has_memory ? 1 : 0)
++              raise Invalid if pc < 0
++              break if pc == code.size
++            end
+             opcode, a, b, c = code[pc], code[pc + 1], code[pc + 2], code[pc + 3]
+             raise Invalid unless opcode.between?(0, REGISTER_MASKS.size - 1) && opcode != PROFILE
+             if opcode >= I32_TABLE_STORE8
+diff --git a/lib/wardite/efflorescence/spinel_integer.rb b/lib/wardite/efflorescence/spinel_integer.rb
+--- a/lib/wardite/efflorescence/spinel_integer.rb
++++ b/lib/wardite/efflorescence/spinel_integer.rb
+@@ -13,6 +13,30 @@
+ 
+       ffi_source <<~C
+         #include <stdint.h>
++
++        int wardite_check_mir_run(const int64_t *code, size_t length, size_t pc, size_t registers,
++                                  const char *rules, size_t nrules, int memory) {
++          for (; pc < length; pc += 4) {
++            if (length-pc < 4 || (uint64_t)code[pc] >= nrules) return -1;
++            unsigned rule = (unsigned char)rules[code[pc]];
++            if ((rule >> 3) == 0) break;
++            for (unsigned i=0; i<3; ++i)
++              if ((rule & (1u << i)) && (uint64_t)code[pc+i+1] >= registers) return -1;
++            uint64_t c = (uint64_t)code[pc+3];
++            switch (rule >> 3) {
++              case 2: case 3: {
++                uint64_t target = (uint64_t)code[pc+((rule >> 3)==2 ? 1 : 2)];
++                if (target >= length || target % 4) return -1;
++                break;
++              }
++              case 4: if (!memory) return -1; /* fall through */
++              case 5: if (c > UINT32_MAX) return -1; break;
++              case 6: if (c > ((uint64_t)UINT32_MAX << 6 | 63)) return -1; break;
++              case 7: if (c > 31) return -1; break;
++            }
++          }
++          return (int)pc;
++        }
+ 
+         int64_t wardite_i64_shl(int64_t bits, int64_t count) {
+           return (int64_t)((uint64_t)bits << ((uint64_t)count & 63));
+@@ -33,6 +57,7 @@
+           return (int)((byte << 8) | bytes[index]);
+         }
+       C
++      ffi_func :wardite_check_mir_run, [:int_array, :size_t, :size_t, :size_t, :binstr, :size_t, :int], :int
+       ffi_func :wardite_i64_shl, [:int64, :int64], :int64
+       ffi_func :wardite_i64_shr_u, [:int64, :int64], :int64
+       ffi_func :wardite_byte_lookup, [:buffer_in, :size_t, :uint32, :uint32], :int

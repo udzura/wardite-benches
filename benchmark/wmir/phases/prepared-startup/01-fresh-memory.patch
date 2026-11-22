@@ -1,0 +1,41 @@
+diff --git a/lib/wardite.rb b/lib/wardite.rb
+--- a/lib/wardite.rb
++++ b/lib/wardite.rb
+@@ -579,6 +579,20 @@
+       previous
+     end
+ 
++    # Allocate the zeroed image for a validated snapshot. Every live byte
++    # comes from the saved pages, so the old buffer can be discarded.
++    # @rbs pages: Integer
++    # @rbs return: bool
++    def replace_snapshot_buffer(pages)
++      return false if pages < current || pages > MAX_PAGES || (max && pages > max)
++      return false if buffer.locked?
++      replacement = allocate_storage(pages)
++      return false unless replacement
++      replace_storage(replacement, pages * PAGE_SIZE)
++      self.current = pages
++      true
++    end
++
+     def inspect
+       preview = read_bytes(0, [bytesize, 64].min)
+       "#<Wardite::Memory initial=#{bytesize.inspect} max=#{@max.inspect} preview=#{preview.inspect}...>"
+diff --git a/lib/wardite/efflorescence/snapshot.rb b/lib/wardite/efflorescence/snapshot.rb
+--- a/lib/wardite/efflorescence/snapshot.rb
++++ b/lib/wardite/efflorescence/snapshot.rb
+@@ -161,7 +161,12 @@
+         reader.finish
+ 
+         if memory
+-          raise MIRCache::Invalid if pages > current && memory.grow(pages - current) < 0
++          if RUBY_ENGINE == "spinel" && pages > current
++            raise MIRCache::Invalid unless memory.replace_snapshot_buffer(pages)
++            current = 0
++          elsif pages > current
++            raise MIRCache::Invalid if memory.grow(pages - current) < 0
++          end
+           used_pages = Array.new(pages, false)
+           used.each_with_index do |page, i|
+             used_pages[page] = true

@@ -1,0 +1,13 @@
+diff --git a/lib/wardite/efflorescence/snapshot.rb b/lib/wardite/efflorescence/snapshot.rb
+index d7ff50f..3352fb2 100644
+--- a/lib/wardite/efflorescence/snapshot.rb
++++ b/lib/wardite/efflorescence/snapshot.rb
+@@ -167,7 +167,7 @@ module Wardite
+             used_pages[page] = true
+             memory.write_bytes(page * PAGE_SIZE, contents.byteslice(i * PAGE_SIZE, PAGE_SIZE) || raise(MIRCache::Invalid))
+           end
+-          used_pages.each_with_index { |nonzero, page| memory.write_bytes(page * PAGE_SIZE, ZERO_PAGE) unless nonzero }
++          current.times { |page| memory.write_bytes(page * PAGE_SIZE, ZERO_PAGE) unless used_pages[page] }
+         end
+         access = StoreAccess.new(store)
+         store.globals.each_with_index do |global, index|
