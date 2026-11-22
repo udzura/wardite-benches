@@ -1,4 +1,4 @@
-"""Compare production interpreters, without modifying generated interpreter code."""
+"""Compare production WebAssembly runtimes on the same modules and inputs."""
 import argparse
 import base64
 import hashlib
@@ -28,11 +28,15 @@ def measure(args, tmp):
         'png': (ex / 'png_grayscale.wasm', [], fixtures / 'rgb-1024.png'),
     }
     wardite = {name: Path(path).resolve(strict=True) for name, path in args.wardite}
-    if len(wardite) != len(args.wardite) or 'iwasm' in wardite:
-        raise ValueError('choose distinct Wardite build names, excluding iwasm')
+    if len(wardite) != len(args.wardite) or 'iwasm' in wardite or (args.wasmtime and 'wasmtime' in wardite):
+        raise ValueError('choose distinct names for all measured engines')
     iwasm = Path(shutil.which('iwasm')).resolve()
     commands = {name: [binary, '--new-engine', '--'] for name, binary in wardite.items()}
     commands['iwasm'] = [iwasm, '--interp']
+    binaries = {**wardite, 'iwasm': iwasm}
+    if args.wasmtime:
+        binaries['wasmtime'] = Path(shutil.which('wasmtime')).resolve()
+        commands['wasmtime'] = [binaries['wasmtime'], 'run', '-C', 'compiler=cranelift', '-C', 'cache=n', '--']
     env = {k: v for k, v in os.environ.items() if not k.startswith('WARDITE_')}
     env.update(WARDITE_MIR_WORKERS='8', WARDITE_MIR_JIT='0')
 
@@ -80,7 +84,7 @@ def measure(args, tmp):
             times = [s['ns'] for s in samples if s['engine'] == name and s['case'] == case]
             print(f'{case:8} {name:16} {median(times)/1e6:8.2f} ms', flush=True)
     return dict(platform=platform.platform(), workers=8, jit=False, output_sha256=checksums,
-                binaries={k: sha256(v) for k, v in {**wardite, 'iwasm': iwasm}.items()},
+                binaries={k: sha256(v) for k, v in binaries.items()},
                 modules={k: sha256(v[0]) for k, v in cases.items()},
                 inputs={k: sha256(v[2]) for k, v in cases.items()}, samples=samples)
 
@@ -89,6 +93,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--build', type=Path, default=Path('build'))
     parser.add_argument('--wardite', nargs=2, metavar=('NAME', 'BIN'), action='append', required=True)
+    parser.add_argument('--wasmtime', action='store_true', help='also time Wasmtime with Cranelift and no compilation cache')
     parser.add_argument('--rounds', type=int, default=12)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
