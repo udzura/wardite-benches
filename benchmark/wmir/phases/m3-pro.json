@@ -1,0 +1,5922 @@
+{
+  "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+  "guest": [
+    "--disable-gems",
+    "-e",
+    "puts RUBY_DESCRIPTION"
+  ],
+  "output": "ruby 4.0.9 (2026-10-23 revision 3e93b23afc) +PRISM [wasm32-wasi]",
+  "sha256": {
+    "wasm": "cb740da111ff6ef951f51fac3296466777cc7b9b48d327f8d8089edeae71a7a4",
+    "release": "fa8cec5c424c0c69c60d73241058cb6a3797c3c651d6fe4ac69b2c986ac00286",
+    "probe": "6ae8ca0f750550511fa0ad08978c46e861ccd1e03ae2e6d16452c98a1c93974c"
+  },
+  "inputs": {
+    "ruby.wmir": [
+      112245440,
+      "a0b5a5b6d2fb30d57d9e436aa7953bbb25803071661e6d26f7421c54b098bf68"
+    ],
+    "mir/9c887d5c79ca6d6fc2652e6881255fd230631a958e20158d7159e71d2cf85f5e.mir2": [
+      90800699,
+      "7cdbdc486d1203b0341e6c31148e8b3d79c2bc4407f92070e15600e14995e3c7"
+    ],
+    "snap/9aee8087eaa575646d4647fec18c4030f256b060b6ebe51be6a1abac4e501318.snap": [
+      8250276,
+      "bec0ab2f3e5a5ba3234f0e4e25a6085a35e103c54e750a28229a4dddedb13d36"
+    ],
+    "snap/a6bc9b59370683859ba1ffdd208d771302deb304647fbd0ce9c70d7e64e0cb5f.snap": [
+      8250276,
+      "e49c90424fd9c7afbfa9f05e91163a7fcb868388fda0f0e013dd6f27203b2d23"
+    ]
+  },
+  "samples": [
+    {
+      "round": 1,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 518255000
+    },
+    {
+      "round": 1,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 521451000,
+      "ns": {
+        "before_open": 4430000,
+        "after_guest": 5225000,
+        "open": 39000,
+        "input": 3070000,
+        "key": 9409000,
+        "sections": 9184000,
+        "mir_read": 8830000,
+        "mir_verify": 6097000,
+        "declare": 8342000,
+        "instance": 1267000,
+        "link": 1027000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 424260000,
+        "lazy_guest": 40271000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92176000,
+      "ns": {
+        "before_open": 3971000,
+        "after_guest": 4111000,
+        "open": 36000,
+        "input": 3081000,
+        "key": 9297000,
+        "sections": 9145000,
+        "mir_read": 8230000,
+        "mir_verify": 6209000,
+        "declare": 8546000,
+        "instance": 1292000,
+        "link": 1049000,
+        "snap_key": 94000,
+        "snap_read": 856000,
+        "snap_slice": 493000,
+        "snap_hash": 3616000,
+        "snap_validate": 985000,
+        "lazy_snap_validate": 6570000,
+        "snap_grow": 6917000,
+        "snap_copy": 941000,
+        "snap_zero": 16023000,
+        "snap_globals": 5000,
+        "frames": 419000,
+        "guest": 124000,
+        "lazy_guest": 166000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92814000
+    },
+    {
+      "round": 1,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 481792000
+    },
+    {
+      "round": 1,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 481977000,
+      "ns": {
+        "before_open": 3848000,
+        "after_guest": 4008000,
+        "open": 38000,
+        "input": 145000,
+        "key": 33000,
+        "sections": 7430000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10421000,
+        "instance": 1279000,
+        "link": 1101000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 409257000,
+        "lazy_guest": 44417000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 65036000,
+      "ns": {
+        "before_open": 4058000,
+        "after_guest": 3125000,
+        "open": 36000,
+        "input": 153000,
+        "key": 30000,
+        "sections": 7113000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9195000,
+        "instance": 3184000,
+        "link": 1517000,
+        "snap_key": 89000,
+        "snap_read": 815000,
+        "snap_slice": 431000,
+        "snap_hash": 3689000,
+        "snap_validate": 901000,
+        "lazy_snap_validate": 6900000,
+        "snap_grow": 6101000,
+        "snap_copy": 781000,
+        "snap_zero": 16194000,
+        "snap_globals": 4000,
+        "frames": 440000,
+        "guest": 106000,
+        "lazy_guest": 174000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63362000
+    },
+    {
+      "round": 2,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 91982000,
+      "ns": {
+        "before_open": 4188000,
+        "after_guest": 3819000,
+        "open": 39000,
+        "input": 3033000,
+        "key": 9415000,
+        "sections": 8949000,
+        "mir_read": 8368000,
+        "mir_verify": 6183000,
+        "declare": 8180000,
+        "instance": 1280000,
+        "link": 1042000,
+        "snap_key": 93000,
+        "snap_read": 877000,
+        "snap_slice": 487000,
+        "snap_hash": 3624000,
+        "snap_validate": 1016000,
+        "lazy_snap_validate": 6660000,
+        "snap_grow": 7214000,
+        "snap_copy": 991000,
+        "snap_zero": 15818000,
+        "snap_globals": 3000,
+        "frames": 431000,
+        "guest": 112000,
+        "lazy_guest": 160000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 2,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92155000
+    },
+    {
+      "round": 2,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 482426000
+    },
+    {
+      "round": 2,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 481539000,
+      "ns": {
+        "before_open": 4156000,
+        "after_guest": 3856000,
+        "open": 38000,
+        "input": 149000,
+        "key": 30000,
+        "sections": 6996000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10331000,
+        "instance": 1267000,
+        "link": 1100000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 408881000,
+        "lazy_guest": 44735000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 2,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64625000,
+      "ns": {
+        "before_open": 3945000,
+        "after_guest": 2578000,
+        "open": 37000,
+        "input": 153000,
+        "key": 43000,
+        "sections": 7225000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9632000,
+        "instance": 3328000,
+        "link": 1430000,
+        "snap_key": 96000,
+        "snap_read": 882000,
+        "snap_slice": 439000,
+        "snap_hash": 3626000,
+        "snap_validate": 897000,
+        "lazy_snap_validate": 6831000,
+        "snap_grow": 6109000,
+        "snap_copy": 751000,
+        "snap_zero": 15919000,
+        "snap_globals": 4000,
+        "frames": 411000,
+        "guest": 108000,
+        "lazy_guest": 181000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 2,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 64021000
+    },
+    {
+      "round": 2,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 514572000
+    },
+    {
+      "round": 2,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 514806000,
+      "ns": {
+        "before_open": 4118000,
+        "after_guest": 5089000,
+        "open": 43000,
+        "input": 3182000,
+        "key": 9506000,
+        "sections": 9048000,
+        "mir_read": 8313000,
+        "mir_verify": 6192000,
+        "declare": 8300000,
+        "instance": 1286000,
+        "link": 1003000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 420814000,
+        "lazy_guest": 37912000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 482734000
+    },
+    {
+      "round": 3,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 482555000,
+      "ns": {
+        "before_open": 3972000,
+        "after_guest": 3956000,
+        "open": 41000,
+        "input": 144000,
+        "key": 32000,
+        "sections": 7225000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10448000,
+        "instance": 1288000,
+        "link": 1091000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 409915000,
+        "lazy_guest": 44443000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64296000,
+      "ns": {
+        "before_open": 3950000,
+        "after_guest": 3024000,
+        "open": 36000,
+        "input": 153000,
+        "key": 31000,
+        "sections": 7091000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9339000,
+        "instance": 3232000,
+        "link": 1542000,
+        "snap_key": 91000,
+        "snap_read": 798000,
+        "snap_slice": 474000,
+        "snap_hash": 3718000,
+        "snap_validate": 922000,
+        "lazy_snap_validate": 6950000,
+        "snap_grow": 6116000,
+        "snap_copy": 773000,
+        "snap_zero": 15335000,
+        "snap_globals": 3000,
+        "frames": 424000,
+        "guest": 115000,
+        "lazy_guest": 179000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63659000
+    },
+    {
+      "round": 3,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 514828000
+    },
+    {
+      "round": 3,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 516564000,
+      "ns": {
+        "before_open": 4005000,
+        "after_guest": 5434000,
+        "open": 39000,
+        "input": 3043000,
+        "key": 9473000,
+        "sections": 9492000,
+        "mir_read": 8196000,
+        "mir_verify": 5934000,
+        "declare": 8288000,
+        "instance": 1278000,
+        "link": 1017000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 421868000,
+        "lazy_guest": 38497000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 93398000,
+      "ns": {
+        "before_open": 4560000,
+        "after_guest": 4096000,
+        "open": 41000,
+        "input": 3205000,
+        "key": 9385000,
+        "sections": 9203000,
+        "mir_read": 8470000,
+        "mir_verify": 6187000,
+        "declare": 8292000,
+        "instance": 1273000,
+        "link": 1073000,
+        "snap_key": 111000,
+        "snap_read": 868000,
+        "snap_slice": 503000,
+        "snap_hash": 3631000,
+        "snap_validate": 1010000,
+        "lazy_snap_validate": 6588000,
+        "snap_grow": 7172000,
+        "snap_copy": 1039000,
+        "snap_zero": 15976000,
+        "snap_globals": 4000,
+        "frames": 420000,
+        "guest": 117000,
+        "lazy_guest": 174000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92069000
+    },
+    {
+      "round": 4,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64205000,
+      "ns": {
+        "before_open": 3979000,
+        "after_guest": 2543000,
+        "open": 37000,
+        "input": 154000,
+        "key": 30000,
+        "sections": 7047000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9601000,
+        "instance": 3251000,
+        "link": 1390000,
+        "snap_key": 91000,
+        "snap_read": 830000,
+        "snap_slice": 463000,
+        "snap_hash": 3628000,
+        "snap_validate": 896000,
+        "lazy_snap_validate": 6906000,
+        "snap_grow": 6174000,
+        "snap_copy": 745000,
+        "snap_zero": 15723000,
+        "snap_globals": 4000,
+        "frames": 429000,
+        "guest": 105000,
+        "lazy_guest": 179000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 4,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 64034000
+    },
+    {
+      "round": 4,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 513513000
+    },
+    {
+      "round": 4,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 515652000,
+      "ns": {
+        "before_open": 4045000,
+        "after_guest": 5190000,
+        "open": 44000,
+        "input": 3206000,
+        "key": 9466000,
+        "sections": 9019000,
+        "mir_read": 8302000,
+        "mir_verify": 5936000,
+        "declare": 8423000,
+        "instance": 1281000,
+        "link": 1013000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 421611000,
+        "lazy_guest": 38116000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 4,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92601000,
+      "ns": {
+        "before_open": 4047000,
+        "after_guest": 4350000,
+        "open": 85000,
+        "input": 3103000,
+        "key": 9400000,
+        "sections": 9256000,
+        "mir_read": 8605000,
+        "mir_verify": 6209000,
+        "declare": 8395000,
+        "instance": 1283000,
+        "link": 1002000,
+        "snap_key": 92000,
+        "snap_read": 877000,
+        "snap_slice": 474000,
+        "snap_hash": 3686000,
+        "snap_validate": 990000,
+        "lazy_snap_validate": 6813000,
+        "snap_grow": 6761000,
+        "snap_copy": 1003000,
+        "snap_zero": 15444000,
+        "snap_globals": 3000,
+        "frames": 444000,
+        "guest": 117000,
+        "lazy_guest": 162000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 4,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92432000
+    },
+    {
+      "round": 4,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 480299000
+    },
+    {
+      "round": 4,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 481216000,
+      "ns": {
+        "before_open": 3944000,
+        "after_guest": 3764000,
+        "open": 39000,
+        "input": 141000,
+        "key": 31000,
+        "sections": 7106000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10140000,
+        "instance": 1295000,
+        "link": 1218000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 408591000,
+        "lazy_guest": 44947000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 5,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63069000
+    },
+    {
+      "round": 5,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63209000,
+      "ns": {
+        "before_open": 4017000,
+        "after_guest": 2505000,
+        "open": 39000,
+        "input": 156000,
+        "key": 33000,
+        "sections": 6854000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9513000,
+        "instance": 3150000,
+        "link": 1366000,
+        "snap_key": 92000,
+        "snap_read": 819000,
+        "snap_slice": 429000,
+        "snap_hash": 3647000,
+        "snap_validate": 863000,
+        "lazy_snap_validate": 6846000,
+        "snap_grow": 5979000,
+        "snap_copy": 813000,
+        "snap_zero": 15386000,
+        "snap_globals": 3000,
+        "frames": 404000,
+        "guest": 110000,
+        "lazy_guest": 185000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 5,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 481283000,
+      "ns": {
+        "before_open": 4004000,
+        "after_guest": 3762000,
+        "open": 38000,
+        "input": 141000,
+        "key": 32000,
+        "sections": 6983000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10601000,
+        "instance": 1329000,
+        "link": 1117000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 408743000,
+        "lazy_guest": 44533000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 5,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 483224000
+    },
+    {
+      "round": 5,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92912000
+    },
+    {
+      "round": 5,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 91952000,
+      "ns": {
+        "before_open": 3863000,
+        "after_guest": 4079000,
+        "open": 40000,
+        "input": 3138000,
+        "key": 9424000,
+        "sections": 9107000,
+        "mir_read": 8458000,
+        "mir_verify": 6503000,
+        "declare": 8318000,
+        "instance": 1282000,
+        "link": 1020000,
+        "snap_key": 96000,
+        "snap_read": 863000,
+        "snap_slice": 498000,
+        "snap_hash": 3583000,
+        "snap_validate": 985000,
+        "lazy_snap_validate": 6878000,
+        "snap_grow": 6885000,
+        "snap_copy": 913000,
+        "snap_zero": 15350000,
+        "snap_globals": 3000,
+        "frames": 392000,
+        "guest": 112000,
+        "lazy_guest": 162000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 5,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 515313000,
+      "ns": {
+        "before_open": 4131000,
+        "after_guest": 4877000,
+        "open": 43000,
+        "input": 3201000,
+        "key": 8955000,
+        "sections": 8999000,
+        "mir_read": 8563000,
+        "mir_verify": 5998000,
+        "declare": 8186000,
+        "instance": 1292000,
+        "link": 1004000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 422088000,
+        "lazy_guest": 37976000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 5,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 513659000
+    },
+    {
+      "round": 6,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 516460000,
+      "ns": {
+        "before_open": 4157000,
+        "after_guest": 4940000,
+        "open": 42000,
+        "input": 3153000,
+        "key": 9523000,
+        "sections": 9177000,
+        "mir_read": 8403000,
+        "mir_verify": 6308000,
+        "declare": 8427000,
+        "instance": 1270000,
+        "link": 1031000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 421872000,
+        "lazy_guest": 38157000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 6,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 515000000
+    },
+    {
+      "round": 6,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 65956000
+    },
+    {
+      "round": 6,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64143000,
+      "ns": {
+        "before_open": 4211000,
+        "after_guest": 2456000,
+        "open": 41000,
+        "input": 155000,
+        "key": 33000,
+        "sections": 7342000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9321000,
+        "instance": 3176000,
+        "link": 1398000,
+        "snap_key": 96000,
+        "snap_read": 814000,
+        "snap_slice": 481000,
+        "snap_hash": 3609000,
+        "snap_validate": 919000,
+        "lazy_snap_validate": 6874000,
+        "snap_grow": 6375000,
+        "snap_copy": 850000,
+        "snap_zero": 15296000,
+        "snap_globals": 3000,
+        "frames": 406000,
+        "guest": 106000,
+        "lazy_guest": 181000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 6,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 484601000,
+      "ns": {
+        "before_open": 4190000,
+        "after_guest": 4167000,
+        "open": 39000,
+        "input": 145000,
+        "key": 31000,
+        "sections": 7121000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10504000,
+        "instance": 1299000,
+        "link": 1125000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 410989000,
+        "lazy_guest": 44991000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 6,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 483861000
+    },
+    {
+      "round": 6,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92229000
+    },
+    {
+      "round": 6,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 94291000,
+      "ns": {
+        "before_open": 4054000,
+        "after_guest": 4598000,
+        "open": 36000,
+        "input": 3172000,
+        "key": 9492000,
+        "sections": 9635000,
+        "mir_read": 8916000,
+        "mir_verify": 5971000,
+        "declare": 8372000,
+        "instance": 1281000,
+        "link": 1119000,
+        "snap_key": 98000,
+        "snap_read": 944000,
+        "snap_slice": 562000,
+        "snap_hash": 3647000,
+        "snap_validate": 972000,
+        "lazy_snap_validate": 6676000,
+        "snap_grow": 6969000,
+        "snap_copy": 1012000,
+        "snap_zero": 16042000,
+        "snap_globals": 4000,
+        "frames": 448000,
+        "guest": 115000,
+        "lazy_guest": 156000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 7,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 93086000
+    },
+    {
+      "round": 7,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 91797000,
+      "ns": {
+        "before_open": 4241000,
+        "after_guest": 3848000,
+        "open": 38000,
+        "input": 2980000,
+        "key": 9424000,
+        "sections": 9119000,
+        "mir_read": 8553000,
+        "mir_verify": 6275000,
+        "declare": 8162000,
+        "instance": 1279000,
+        "link": 1012000,
+        "snap_key": 113000,
+        "snap_read": 873000,
+        "snap_slice": 465000,
+        "snap_hash": 3607000,
+        "snap_validate": 1009000,
+        "lazy_snap_validate": 6702000,
+        "snap_grow": 7100000,
+        "snap_copy": 989000,
+        "snap_zero": 15321000,
+        "snap_globals": 3000,
+        "frames": 411000,
+        "guest": 113000,
+        "lazy_guest": 160000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 7,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 516842000,
+      "ns": {
+        "before_open": 4117000,
+        "after_guest": 4886000,
+        "open": 40000,
+        "input": 3066000,
+        "key": 9218000,
+        "sections": 9220000,
+        "mir_read": 8223000,
+        "mir_verify": 6059000,
+        "declare": 8361000,
+        "instance": 1296000,
+        "link": 1029000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 422873000,
+        "lazy_guest": 38454000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 7,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 516107000
+    },
+    {
+      "round": 7,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 64089000
+    },
+    {
+      "round": 7,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63487000,
+      "ns": {
+        "before_open": 3968000,
+        "after_guest": 2441000,
+        "open": 38000,
+        "input": 153000,
+        "key": 31000,
+        "sections": 7264000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9306000,
+        "instance": 3180000,
+        "link": 1405000,
+        "snap_key": 92000,
+        "snap_read": 819000,
+        "snap_slice": 489000,
+        "snap_hash": 3627000,
+        "snap_validate": 896000,
+        "lazy_snap_validate": 6786000,
+        "snap_grow": 6268000,
+        "snap_copy": 836000,
+        "snap_zero": 15188000,
+        "snap_globals": 3000,
+        "frames": 409000,
+        "guest": 104000,
+        "lazy_guest": 184000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 7,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 483747000,
+      "ns": {
+        "before_open": 3738000,
+        "after_guest": 3933000,
+        "open": 35000,
+        "input": 140000,
+        "key": 31000,
+        "sections": 7161000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10563000,
+        "instance": 1307000,
+        "link": 1115000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 411189000,
+        "lazy_guest": 44535000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 7,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 481816000
+    },
+    {
+      "round": 8,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 483631000,
+      "ns": {
+        "before_open": 4039000,
+        "after_guest": 4161000,
+        "open": 44000,
+        "input": 142000,
+        "key": 32000,
+        "sections": 7181000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10535000,
+        "instance": 1271000,
+        "link": 1118000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 410108000,
+        "lazy_guest": 45000000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 8,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 480550000
+    },
+    {
+      "round": 8,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92951000
+    },
+    {
+      "round": 8,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92654000,
+      "ns": {
+        "before_open": 3820000,
+        "after_guest": 5186000,
+        "open": 37000,
+        "input": 3111000,
+        "key": 9407000,
+        "sections": 9476000,
+        "mir_read": 8339000,
+        "mir_verify": 5987000,
+        "declare": 8133000,
+        "instance": 1260000,
+        "link": 1022000,
+        "snap_key": 92000,
+        "snap_read": 890000,
+        "snap_slice": 576000,
+        "snap_hash": 3678000,
+        "snap_validate": 954000,
+        "lazy_snap_validate": 6725000,
+        "snap_grow": 6718000,
+        "snap_copy": 944000,
+        "snap_zero": 15645000,
+        "snap_globals": 5000,
+        "frames": 398000,
+        "guest": 107000,
+        "lazy_guest": 144000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 8,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 514930000,
+      "ns": {
+        "before_open": 4120000,
+        "after_guest": 4913000,
+        "open": 38000,
+        "input": 2979000,
+        "key": 9391000,
+        "sections": 9318000,
+        "mir_read": 8772000,
+        "mir_verify": 6306000,
+        "declare": 8272000,
+        "instance": 1307000,
+        "link": 1025000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 420223000,
+        "lazy_guest": 38266000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 8,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 512851000
+    },
+    {
+      "round": 8,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63063000
+    },
+    {
+      "round": 8,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63311000,
+      "ns": {
+        "before_open": 4092000,
+        "after_guest": 2388000,
+        "open": 37000,
+        "input": 154000,
+        "key": 35000,
+        "sections": 7273000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9139000,
+        "instance": 3148000,
+        "link": 1377000,
+        "snap_key": 90000,
+        "snap_read": 823000,
+        "snap_slice": 452000,
+        "snap_hash": 3592000,
+        "snap_validate": 892000,
+        "lazy_snap_validate": 6881000,
+        "snap_grow": 6239000,
+        "snap_copy": 806000,
+        "snap_zero": 15214000,
+        "snap_globals": 2000,
+        "frames": 392000,
+        "guest": 104000,
+        "lazy_guest": 181000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 9,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 513505000
+    },
+    {
+      "round": 9,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 514393000,
+      "ns": {
+        "before_open": 3832000,
+        "after_guest": 4986000,
+        "open": 38000,
+        "input": 3060000,
+        "key": 9419000,
+        "sections": 8996000,
+        "mir_read": 8441000,
+        "mir_verify": 5830000,
+        "declare": 8142000,
+        "instance": 1250000,
+        "link": 1036000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 421401000,
+        "lazy_guest": 37962000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 9,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92150000,
+      "ns": {
+        "before_open": 3958000,
+        "after_guest": 4077000,
+        "open": 37000,
+        "input": 3088000,
+        "key": 9348000,
+        "sections": 9165000,
+        "mir_read": 8181000,
+        "mir_verify": 6114000,
+        "declare": 8250000,
+        "instance": 1348000,
+        "link": 1042000,
+        "snap_key": 103000,
+        "snap_read": 962000,
+        "snap_slice": 519000,
+        "snap_hash": 3598000,
+        "snap_validate": 1001000,
+        "lazy_snap_validate": 6611000,
+        "snap_grow": 6855000,
+        "snap_copy": 980000,
+        "snap_zero": 16236000,
+        "snap_globals": 3000,
+        "frames": 411000,
+        "guest": 108000,
+        "lazy_guest": 155000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 9,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92672000
+    },
+    {
+      "round": 9,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 482773000
+    },
+    {
+      "round": 9,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 485236000,
+      "ns": {
+        "before_open": 3954000,
+        "after_guest": 4080000,
+        "open": 37000,
+        "input": 141000,
+        "key": 29000,
+        "sections": 7147000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10582000,
+        "instance": 1249000,
+        "link": 1109000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 411685000,
+        "lazy_guest": 45223000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 9,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64129000,
+      "ns": {
+        "before_open": 4163000,
+        "after_guest": 3299000,
+        "open": 38000,
+        "input": 155000,
+        "key": 30000,
+        "sections": 7026000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9197000,
+        "instance": 3157000,
+        "link": 1551000,
+        "snap_key": 90000,
+        "snap_read": 825000,
+        "snap_slice": 469000,
+        "snap_hash": 3686000,
+        "snap_validate": 886000,
+        "lazy_snap_validate": 6884000,
+        "snap_grow": 6038000,
+        "snap_copy": 785000,
+        "snap_zero": 15128000,
+        "snap_globals": 4000,
+        "frames": 426000,
+        "guest": 106000,
+        "lazy_guest": 186000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 9,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 64241000
+    },
+    {
+      "round": 10,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 93450000,
+      "ns": {
+        "before_open": 4187000,
+        "after_guest": 4061000,
+        "open": 53000,
+        "input": 3099000,
+        "key": 9453000,
+        "sections": 9030000,
+        "mir_read": 8383000,
+        "mir_verify": 6017000,
+        "declare": 8339000,
+        "instance": 1278000,
+        "link": 1043000,
+        "snap_key": 90000,
+        "snap_read": 882000,
+        "snap_slice": 539000,
+        "snap_hash": 3653000,
+        "snap_validate": 1231000,
+        "lazy_snap_validate": 6783000,
+        "snap_grow": 7402000,
+        "snap_copy": 1037000,
+        "snap_zero": 16219000,
+        "snap_globals": 4000,
+        "frames": 394000,
+        "guest": 112000,
+        "lazy_guest": 161000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 10,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 93914000
+    },
+    {
+      "round": 10,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 480880000
+    },
+    {
+      "round": 10,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 480263000,
+      "ns": {
+        "before_open": 4088000,
+        "after_guest": 3852000,
+        "open": 37000,
+        "input": 145000,
+        "key": 31000,
+        "sections": 7058000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10227000,
+        "instance": 1257000,
+        "link": 1080000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 408055000,
+        "lazy_guest": 44433000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 10,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63188000,
+      "ns": {
+        "before_open": 4041000,
+        "after_guest": 2544000,
+        "open": 35000,
+        "input": 201000,
+        "key": 36000,
+        "sections": 6969000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9515000,
+        "instance": 3236000,
+        "link": 1386000,
+        "snap_key": 89000,
+        "snap_read": 813000,
+        "snap_slice": 432000,
+        "snap_hash": 3621000,
+        "snap_validate": 941000,
+        "lazy_snap_validate": 6726000,
+        "snap_grow": 6027000,
+        "snap_copy": 773000,
+        "snap_zero": 15126000,
+        "snap_globals": 4000,
+        "frames": 402000,
+        "guest": 103000,
+        "lazy_guest": 168000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 10,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63918000
+    },
+    {
+      "round": 10,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 513793000
+    },
+    {
+      "round": 10,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 515361000,
+      "ns": {
+        "before_open": 4031000,
+        "after_guest": 5387000,
+        "open": 41000,
+        "input": 3311000,
+        "key": 9524000,
+        "sections": 9108000,
+        "mir_read": 8359000,
+        "mir_verify": 6060000,
+        "declare": 8326000,
+        "instance": 1321000,
+        "link": 1003000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 420827000,
+        "lazy_guest": 38063000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 11,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 480479000
+    },
+    {
+      "round": 11,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 481814000,
+      "ns": {
+        "before_open": 4059000,
+        "after_guest": 3969000,
+        "open": 38000,
+        "input": 143000,
+        "key": 40000,
+        "sections": 7051000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10497000,
+        "instance": 1292000,
+        "link": 1076000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 409016000,
+        "lazy_guest": 44633000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 11,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63824000,
+      "ns": {
+        "before_open": 4063000,
+        "after_guest": 2771000,
+        "open": 40000,
+        "input": 159000,
+        "key": 34000,
+        "sections": 6963000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9217000,
+        "instance": 3131000,
+        "link": 1377000,
+        "snap_key": 97000,
+        "snap_read": 807000,
+        "snap_slice": 433000,
+        "snap_hash": 3685000,
+        "snap_validate": 911000,
+        "lazy_snap_validate": 6990000,
+        "snap_grow": 6034000,
+        "snap_copy": 799000,
+        "snap_zero": 15626000,
+        "snap_globals": 3000,
+        "frames": 407000,
+        "guest": 104000,
+        "lazy_guest": 173000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 11,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63130000
+    },
+    {
+      "round": 11,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 520452000
+    },
+    {
+      "round": 11,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 515773000,
+      "ns": {
+        "before_open": 4044000,
+        "after_guest": 5544000,
+        "open": 41000,
+        "input": 3077000,
+        "key": 9467000,
+        "sections": 9583000,
+        "mir_read": 8294000,
+        "mir_verify": 6119000,
+        "declare": 8303000,
+        "instance": 1275000,
+        "link": 1052000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 420461000,
+        "lazy_guest": 38513000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 11,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92485000,
+      "ns": {
+        "before_open": 4335000,
+        "after_guest": 3982000,
+        "open": 45000,
+        "input": 3172000,
+        "key": 9406000,
+        "sections": 9057000,
+        "mir_read": 8251000,
+        "mir_verify": 6249000,
+        "declare": 8310000,
+        "instance": 1269000,
+        "link": 1001000,
+        "snap_key": 100000,
+        "snap_read": 849000,
+        "snap_slice": 487000,
+        "snap_hash": 3607000,
+        "snap_validate": 1014000,
+        "lazy_snap_validate": 6630000,
+        "snap_grow": 7132000,
+        "snap_copy": 1006000,
+        "snap_zero": 15901000,
+        "snap_globals": 4000,
+        "frames": 418000,
+        "guest": 105000,
+        "lazy_guest": 155000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 11,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92300000
+    },
+    {
+      "round": 12,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64126000,
+      "ns": {
+        "before_open": 3907000,
+        "after_guest": 2622000,
+        "open": 38000,
+        "input": 144000,
+        "key": 30000,
+        "sections": 6961000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9735000,
+        "instance": 3312000,
+        "link": 1426000,
+        "snap_key": 100000,
+        "snap_read": 825000,
+        "snap_slice": 437000,
+        "snap_hash": 3627000,
+        "snap_validate": 993000,
+        "lazy_snap_validate": 6872000,
+        "snap_grow": 6189000,
+        "snap_copy": 772000,
+        "snap_zero": 15441000,
+        "snap_globals": 4000,
+        "frames": 405000,
+        "guest": 109000,
+        "lazy_guest": 177000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 12,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63906000
+    },
+    {
+      "round": 12,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 513901000
+    },
+    {
+      "round": 12,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 516442000,
+      "ns": {
+        "before_open": 3993000,
+        "after_guest": 4936000,
+        "open": 38000,
+        "input": 3103000,
+        "key": 9496000,
+        "sections": 9010000,
+        "mir_read": 8348000,
+        "mir_verify": 6089000,
+        "declare": 8337000,
+        "instance": 1292000,
+        "link": 1005000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 422148000,
+        "lazy_guest": 38647000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 12,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92925000,
+      "ns": {
+        "before_open": 4295000,
+        "after_guest": 4377000,
+        "open": 45000,
+        "input": 3020000,
+        "key": 9444000,
+        "sections": 9112000,
+        "mir_read": 8596000,
+        "mir_verify": 6058000,
+        "declare": 8263000,
+        "instance": 1272000,
+        "link": 1015000,
+        "snap_key": 98000,
+        "snap_read": 878000,
+        "snap_slice": 483000,
+        "snap_hash": 3728000,
+        "snap_validate": 1009000,
+        "lazy_snap_validate": 6857000,
+        "snap_grow": 6841000,
+        "snap_copy": 977000,
+        "snap_zero": 15815000,
+        "snap_globals": 3000,
+        "frames": 438000,
+        "guest": 129000,
+        "lazy_guest": 172000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 12,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 93481000
+    },
+    {
+      "round": 12,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 487326000
+    },
+    {
+      "round": 12,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 485498000,
+      "ns": {
+        "before_open": 4110000,
+        "after_guest": 3886000,
+        "open": 39000,
+        "input": 139000,
+        "key": 29000,
+        "sections": 6987000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10675000,
+        "instance": 1417000,
+        "link": 1157000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 411957000,
+        "lazy_guest": 45102000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 13,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 64730000
+    },
+    {
+      "round": 13,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64029000,
+      "ns": {
+        "before_open": 4409000,
+        "after_guest": 2568000,
+        "open": 42000,
+        "input": 159000,
+        "key": 36000,
+        "sections": 6986000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9249000,
+        "instance": 3150000,
+        "link": 1412000,
+        "snap_key": 97000,
+        "snap_read": 818000,
+        "snap_slice": 461000,
+        "snap_hash": 3603000,
+        "snap_validate": 917000,
+        "lazy_snap_validate": 7121000,
+        "snap_grow": 6115000,
+        "snap_copy": 781000,
+        "snap_zero": 15412000,
+        "snap_globals": 3000,
+        "frames": 414000,
+        "guest": 103000,
+        "lazy_guest": 173000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 13,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 484093000,
+      "ns": {
+        "before_open": 4323000,
+        "after_guest": 3786000,
+        "open": 39000,
+        "input": 145000,
+        "key": 33000,
+        "sections": 7352000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10227000,
+        "instance": 1295000,
+        "link": 1126000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 410641000,
+        "lazy_guest": 45126000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 13,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 484427000
+    },
+    {
+      "round": 13,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92611000
+    },
+    {
+      "round": 13,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 93004000,
+      "ns": {
+        "before_open": 4320000,
+        "after_guest": 3869000,
+        "open": 40000,
+        "input": 3297000,
+        "key": 9633000,
+        "sections": 9259000,
+        "mir_read": 8258000,
+        "mir_verify": 6000000,
+        "declare": 8698000,
+        "instance": 1315000,
+        "link": 1093000,
+        "snap_key": 97000,
+        "snap_read": 861000,
+        "snap_slice": 506000,
+        "snap_hash": 3627000,
+        "snap_validate": 961000,
+        "lazy_snap_validate": 6812000,
+        "snap_grow": 6677000,
+        "snap_copy": 969000,
+        "snap_zero": 15967000,
+        "snap_globals": 3000,
+        "frames": 471000,
+        "guest": 126000,
+        "lazy_guest": 145000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 13,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 518188000,
+      "ns": {
+        "before_open": 3990000,
+        "after_guest": 5443000,
+        "open": 29000,
+        "input": 2915000,
+        "key": 8968000,
+        "sections": 9578000,
+        "mir_read": 8567000,
+        "mir_verify": 5901000,
+        "declare": 8395000,
+        "instance": 1303000,
+        "link": 1052000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 423443000,
+        "lazy_guest": 38604000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 13,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 513973000
+    },
+    {
+      "round": 14,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 514800000,
+      "ns": {
+        "before_open": 4052000,
+        "after_guest": 5209000,
+        "open": 38000,
+        "input": 3040000,
+        "key": 9456000,
+        "sections": 9511000,
+        "mir_read": 8472000,
+        "mir_verify": 5938000,
+        "declare": 8198000,
+        "instance": 1280000,
+        "link": 1030000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 420330000,
+        "lazy_guest": 38246000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 14,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 519679000
+    },
+    {
+      "round": 14,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63336000
+    },
+    {
+      "round": 14,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63849000,
+      "ns": {
+        "before_open": 4038000,
+        "after_guest": 2636000,
+        "open": 40000,
+        "input": 155000,
+        "key": 31000,
+        "sections": 6991000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9380000,
+        "instance": 3562000,
+        "link": 1462000,
+        "snap_key": 92000,
+        "snap_read": 817000,
+        "snap_slice": 430000,
+        "snap_hash": 3598000,
+        "snap_validate": 881000,
+        "lazy_snap_validate": 6851000,
+        "snap_grow": 6053000,
+        "snap_copy": 752000,
+        "snap_zero": 15369000,
+        "snap_globals": 4000,
+        "frames": 419000,
+        "guest": 107000,
+        "lazy_guest": 181000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 14,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 483185000,
+      "ns": {
+        "before_open": 3925000,
+        "after_guest": 3699000,
+        "open": 37000,
+        "input": 140000,
+        "key": 30000,
+        "sections": 6983000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10424000,
+        "instance": 1352000,
+        "link": 1152000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 410733000,
+        "lazy_guest": 44710000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 14,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 480509000
+    },
+    {
+      "round": 14,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 91651000
+    },
+    {
+      "round": 14,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 91285000,
+      "ns": {
+        "before_open": 4174000,
+        "after_guest": 3918000,
+        "open": 40000,
+        "input": 3062000,
+        "key": 9447000,
+        "sections": 9001000,
+        "mir_read": 8420000,
+        "mir_verify": 6468000,
+        "declare": 8062000,
+        "instance": 1274000,
+        "link": 1011000,
+        "snap_key": 91000,
+        "snap_read": 842000,
+        "snap_slice": 434000,
+        "snap_hash": 3620000,
+        "snap_validate": 964000,
+        "lazy_snap_validate": 6595000,
+        "snap_grow": 6763000,
+        "snap_copy": 1043000,
+        "snap_zero": 15365000,
+        "snap_globals": 3000,
+        "frames": 423000,
+        "guest": 110000,
+        "lazy_guest": 155000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 15,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 91353000
+    },
+    {
+      "round": 15,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92218000,
+      "ns": {
+        "before_open": 4012000,
+        "after_guest": 4285000,
+        "open": 37000,
+        "input": 3072000,
+        "key": 9450000,
+        "sections": 9448000,
+        "mir_read": 8308000,
+        "mir_verify": 5984000,
+        "declare": 8207000,
+        "instance": 1269000,
+        "link": 1022000,
+        "snap_key": 96000,
+        "snap_read": 848000,
+        "snap_slice": 507000,
+        "snap_hash": 3700000,
+        "snap_validate": 930000,
+        "lazy_snap_validate": 6590000,
+        "snap_grow": 6588000,
+        "snap_copy": 959000,
+        "snap_zero": 16174000,
+        "snap_globals": 3000,
+        "frames": 450000,
+        "guest": 118000,
+        "lazy_guest": 161000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 15,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 514043000,
+      "ns": {
+        "before_open": 3987000,
+        "after_guest": 5312000,
+        "open": 41000,
+        "input": 3088000,
+        "key": 9440000,
+        "sections": 9097000,
+        "mir_read": 9091000,
+        "mir_verify": 5778000,
+        "declare": 8163000,
+        "instance": 1272000,
+        "link": 996000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 419680000,
+        "lazy_guest": 38098000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 15,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 515143000
+    },
+    {
+      "round": 15,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63413000
+    },
+    {
+      "round": 15,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63550000,
+      "ns": {
+        "before_open": 4109000,
+        "after_guest": 2679000,
+        "open": 38000,
+        "input": 158000,
+        "key": 32000,
+        "sections": 6991000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9250000,
+        "instance": 3235000,
+        "link": 1415000,
+        "snap_key": 91000,
+        "snap_read": 832000,
+        "snap_slice": 435000,
+        "snap_hash": 3656000,
+        "snap_validate": 957000,
+        "lazy_snap_validate": 7023000,
+        "snap_grow": 6151000,
+        "snap_copy": 777000,
+        "snap_zero": 15040000,
+        "snap_globals": 3000,
+        "frames": 400000,
+        "guest": 106000,
+        "lazy_guest": 172000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 15,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 481944000,
+      "ns": {
+        "before_open": 4083000,
+        "after_guest": 3783000,
+        "open": 41000,
+        "input": 156000,
+        "key": 35000,
+        "sections": 7071000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10271000,
+        "instance": 1284000,
+        "link": 1153000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 409723000,
+        "lazy_guest": 44344000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 15,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 480708000
+    },
+    {
+      "round": 16,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 481463000,
+      "ns": {
+        "before_open": 4209000,
+        "after_guest": 3702000,
+        "open": 39000,
+        "input": 145000,
+        "key": 32000,
+        "sections": 7260000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10410000,
+        "instance": 1286000,
+        "link": 1094000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 408769000,
+        "lazy_guest": 44517000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 16,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 482141000
+    },
+    {
+      "round": 16,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92436000
+    },
+    {
+      "round": 16,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 91695000,
+      "ns": {
+        "before_open": 4168000,
+        "after_guest": 4402000,
+        "open": 42000,
+        "input": 3091000,
+        "key": 9442000,
+        "sections": 9591000,
+        "mir_read": 8238000,
+        "mir_verify": 5900000,
+        "declare": 8302000,
+        "instance": 1264000,
+        "link": 1058000,
+        "snap_key": 102000,
+        "snap_read": 901000,
+        "snap_slice": 461000,
+        "snap_hash": 3698000,
+        "snap_validate": 853000,
+        "lazy_snap_validate": 6584000,
+        "snap_grow": 6414000,
+        "snap_copy": 818000,
+        "snap_zero": 15643000,
+        "snap_globals": 3000,
+        "frames": 430000,
+        "guest": 125000,
+        "lazy_guest": 165000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 16,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 515745000,
+      "ns": {
+        "before_open": 4166000,
+        "after_guest": 4940000,
+        "open": 30000,
+        "input": 3189000,
+        "key": 9416000,
+        "sections": 9399000,
+        "mir_read": 8574000,
+        "mir_verify": 5994000,
+        "declare": 8263000,
+        "instance": 1281000,
+        "link": 1018000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 420972000,
+        "lazy_guest": 38503000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 16,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 516333000
+    },
+    {
+      "round": 16,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 64084000
+    },
+    {
+      "round": 16,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63967000,
+      "ns": {
+        "before_open": 3871000,
+        "after_guest": 3028000,
+        "open": 36000,
+        "input": 156000,
+        "key": 33000,
+        "sections": 7011000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9353000,
+        "instance": 3189000,
+        "link": 1411000,
+        "snap_key": 105000,
+        "snap_read": 887000,
+        "snap_slice": 465000,
+        "snap_hash": 3570000,
+        "snap_validate": 925000,
+        "lazy_snap_validate": 6888000,
+        "snap_grow": 6251000,
+        "snap_copy": 780000,
+        "snap_zero": 15290000,
+        "snap_globals": 2000,
+        "frames": 436000,
+        "guest": 105000,
+        "lazy_guest": 175000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 17,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 515826000
+    },
+    {
+      "round": 17,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 517497000,
+      "ns": {
+        "before_open": 4048000,
+        "after_guest": 5514000,
+        "open": 36000,
+        "input": 2971000,
+        "key": 9265000,
+        "sections": 9357000,
+        "mir_read": 8338000,
+        "mir_verify": 6188000,
+        "declare": 8111000,
+        "instance": 1281000,
+        "link": 1030000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 422596000,
+        "lazy_guest": 38762000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 17,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 91160000,
+      "ns": {
+        "before_open": 4445000,
+        "after_guest": 3869000,
+        "open": 42000,
+        "input": 3040000,
+        "key": 9418000,
+        "sections": 9097000,
+        "mir_read": 8385000,
+        "mir_verify": 6063000,
+        "declare": 8256000,
+        "instance": 1297000,
+        "link": 1031000,
+        "snap_key": 102000,
+        "snap_read": 907000,
+        "snap_slice": 422000,
+        "snap_hash": 3620000,
+        "snap_validate": 865000,
+        "lazy_snap_validate": 6649000,
+        "snap_grow": 6737000,
+        "snap_copy": 845000,
+        "snap_zero": 15391000,
+        "snap_globals": 3000,
+        "frames": 406000,
+        "guest": 115000,
+        "lazy_guest": 155000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 17,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 93428000
+    },
+    {
+      "round": 17,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 480156000
+    },
+    {
+      "round": 17,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 483531000,
+      "ns": {
+        "before_open": 4057000,
+        "after_guest": 3718000,
+        "open": 38000,
+        "input": 157000,
+        "key": 37000,
+        "sections": 7581000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10527000,
+        "instance": 1267000,
+        "link": 1200000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 409814000,
+        "lazy_guest": 45135000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 17,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64412000,
+      "ns": {
+        "before_open": 4131000,
+        "after_guest": 2575000,
+        "open": 39000,
+        "input": 172000,
+        "key": 33000,
+        "sections": 7053000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9504000,
+        "instance": 3401000,
+        "link": 1463000,
+        "snap_key": 91000,
+        "snap_read": 848000,
+        "snap_slice": 477000,
+        "snap_hash": 3704000,
+        "snap_validate": 911000,
+        "lazy_snap_validate": 7056000,
+        "snap_grow": 6160000,
+        "snap_copy": 838000,
+        "snap_zero": 15191000,
+        "snap_globals": 4000,
+        "frames": 443000,
+        "guest": 112000,
+        "lazy_guest": 206000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 17,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 65469000
+    },
+    {
+      "round": 18,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 93475000,
+      "ns": {
+        "before_open": 4061000,
+        "after_guest": 5240000,
+        "open": 38000,
+        "input": 3190000,
+        "key": 9459000,
+        "sections": 9486000,
+        "mir_read": 8648000,
+        "mir_verify": 6530000,
+        "declare": 8430000,
+        "instance": 1341000,
+        "link": 1007000,
+        "snap_key": 100000,
+        "snap_read": 891000,
+        "snap_slice": 428000,
+        "snap_hash": 3434000,
+        "snap_validate": 897000,
+        "lazy_snap_validate": 6853000,
+        "snap_grow": 6325000,
+        "snap_copy": 809000,
+        "snap_zero": 15638000,
+        "snap_globals": 4000,
+        "frames": 405000,
+        "guest": 116000,
+        "lazy_guest": 145000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 18,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 94338000
+    },
+    {
+      "round": 18,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 499461000
+    },
+    {
+      "round": 18,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 509896000,
+      "ns": {
+        "before_open": 4503000,
+        "after_guest": 4083000,
+        "open": 50000,
+        "input": 157000,
+        "key": 33000,
+        "sections": 7802000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 11770000,
+        "instance": 1637000,
+        "link": 1351000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 429195000,
+        "lazy_guest": 49315000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 18,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 66154000,
+      "ns": {
+        "before_open": 4177000,
+        "after_guest": 2813000,
+        "open": 37000,
+        "input": 156000,
+        "key": 32000,
+        "sections": 7428000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9667000,
+        "instance": 3385000,
+        "link": 1542000,
+        "snap_key": 113000,
+        "snap_read": 1001000,
+        "snap_slice": 501000,
+        "snap_hash": 3673000,
+        "snap_validate": 916000,
+        "lazy_snap_validate": 7007000,
+        "snap_grow": 6281000,
+        "snap_copy": 802000,
+        "snap_zero": 15910000,
+        "snap_globals": 4000,
+        "frames": 421000,
+        "guest": 105000,
+        "lazy_guest": 183000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 18,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 65429000
+    },
+    {
+      "round": 18,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 525115000
+    },
+    {
+      "round": 18,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 528475000,
+      "ns": {
+        "before_open": 4306000,
+        "after_guest": 5178000,
+        "open": 42000,
+        "input": 3238000,
+        "key": 9546000,
+        "sections": 9752000,
+        "mir_read": 8568000,
+        "mir_verify": 6547000,
+        "declare": 8805000,
+        "instance": 1375000,
+        "link": 1129000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 430491000,
+        "lazy_guest": 39498000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 19,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 487283000
+    },
+    {
+      "round": 19,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 487201000,
+      "ns": {
+        "before_open": 4232000,
+        "after_guest": 3916000,
+        "open": 40000,
+        "input": 140000,
+        "key": 32000,
+        "sections": 7259000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 11115000,
+        "instance": 1346000,
+        "link": 1108000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 412388000,
+        "lazy_guest": 45625000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 19,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 66255000,
+      "ns": {
+        "before_open": 4083000,
+        "after_guest": 3098000,
+        "open": 37000,
+        "input": 156000,
+        "key": 30000,
+        "sections": 7345000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9724000,
+        "instance": 3441000,
+        "link": 1571000,
+        "snap_key": 106000,
+        "snap_read": 851000,
+        "snap_slice": 510000,
+        "snap_hash": 3579000,
+        "snap_validate": 1032000,
+        "lazy_snap_validate": 7007000,
+        "snap_grow": 6293000,
+        "snap_copy": 949000,
+        "snap_zero": 15706000,
+        "snap_globals": 6000,
+        "frames": 443000,
+        "guest": 114000,
+        "lazy_guest": 174000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 19,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 65386000
+    },
+    {
+      "round": 19,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 520461000
+    },
+    {
+      "round": 19,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 521292000,
+      "ns": {
+        "before_open": 4153000,
+        "after_guest": 5244000,
+        "open": 38000,
+        "input": 3590000,
+        "key": 9591000,
+        "sections": 9735000,
+        "mir_read": 8813000,
+        "mir_verify": 7816000,
+        "declare": 8328000,
+        "instance": 1353000,
+        "link": 1003000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 422811000,
+        "lazy_guest": 38817000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 19,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 96645000,
+      "ns": {
+        "before_open": 4142000,
+        "after_guest": 5041000,
+        "open": 47000,
+        "input": 3520000,
+        "key": 9298000,
+        "sections": 10017000,
+        "mir_read": 8742000,
+        "mir_verify": 7744000,
+        "declare": 8424000,
+        "instance": 1334000,
+        "link": 1024000,
+        "snap_key": 98000,
+        "snap_read": 871000,
+        "snap_slice": 512000,
+        "snap_hash": 3581000,
+        "snap_validate": 1028000,
+        "lazy_snap_validate": 6810000,
+        "snap_grow": 6998000,
+        "snap_copy": 987000,
+        "snap_zero": 15741000,
+        "snap_globals": 3000,
+        "frames": 416000,
+        "guest": 109000,
+        "lazy_guest": 158000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 19,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 95249000
+    },
+    {
+      "round": 20,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 66475000,
+      "ns": {
+        "before_open": 4269000,
+        "after_guest": 3231000,
+        "open": 52000,
+        "input": 155000,
+        "key": 42000,
+        "sections": 7299000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9621000,
+        "instance": 3313000,
+        "link": 1440000,
+        "snap_key": 99000,
+        "snap_read": 926000,
+        "snap_slice": 558000,
+        "snap_hash": 3670000,
+        "snap_validate": 1135000,
+        "lazy_snap_validate": 6994000,
+        "snap_grow": 6436000,
+        "snap_copy": 975000,
+        "snap_zero": 15536000,
+        "snap_globals": 3000,
+        "frames": 438000,
+        "guest": 110000,
+        "lazy_guest": 173000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 20,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 66526000
+    },
+    {
+      "round": 20,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 521365000
+    },
+    {
+      "round": 20,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 520738000,
+      "ns": {
+        "before_open": 4071000,
+        "after_guest": 5304000,
+        "open": 43000,
+        "input": 3487000,
+        "key": 9567000,
+        "sections": 9602000,
+        "mir_read": 8785000,
+        "mir_verify": 7827000,
+        "declare": 8467000,
+        "instance": 1326000,
+        "link": 1039000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 422458000,
+        "lazy_guest": 38762000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 20,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 97014000,
+      "ns": {
+        "before_open": 4099000,
+        "after_guest": 4637000,
+        "open": 38000,
+        "input": 3081000,
+        "key": 9575000,
+        "sections": 10023000,
+        "mir_read": 8582000,
+        "mir_verify": 7697000,
+        "declare": 8432000,
+        "instance": 1481000,
+        "link": 1029000,
+        "snap_key": 95000,
+        "snap_read": 842000,
+        "snap_slice": 539000,
+        "snap_hash": 3684000,
+        "snap_validate": 959000,
+        "lazy_snap_validate": 6808000,
+        "snap_grow": 7011000,
+        "snap_copy": 1133000,
+        "snap_zero": 16469000,
+        "snap_globals": 5000,
+        "frames": 508000,
+        "guest": 112000,
+        "lazy_guest": 175000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 20,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 96776000
+    },
+    {
+      "round": 20,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 486904000
+    },
+    {
+      "round": 20,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 487569000,
+      "ns": {
+        "before_open": 4199000,
+        "after_guest": 4153000,
+        "open": 47000,
+        "input": 158000,
+        "key": 33000,
+        "sections": 7258000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10588000,
+        "instance": 1261000,
+        "link": 1073000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 413424000,
+        "lazy_guest": 45375000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 21,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 66775000
+    },
+    {
+      "round": 21,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 65015000,
+      "ns": {
+        "before_open": 3990000,
+        "after_guest": 2748000,
+        "open": 41000,
+        "input": 162000,
+        "key": 35000,
+        "sections": 7074000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9518000,
+        "instance": 3211000,
+        "link": 1598000,
+        "snap_key": 98000,
+        "snap_read": 898000,
+        "snap_slice": 491000,
+        "snap_hash": 3679000,
+        "snap_validate": 1039000,
+        "lazy_snap_validate": 6870000,
+        "snap_grow": 6157000,
+        "snap_copy": 976000,
+        "snap_zero": 15740000,
+        "snap_globals": 4000,
+        "frames": 398000,
+        "guest": 116000,
+        "lazy_guest": 172000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 21,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 495874000,
+      "ns": {
+        "before_open": 3968000,
+        "after_guest": 3967000,
+        "open": 37000,
+        "input": 141000,
+        "key": 33000,
+        "sections": 7068000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10459000,
+        "instance": 1291000,
+        "link": 1144000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 421696000,
+        "lazy_guest": 46070000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 21,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 485209000
+    },
+    {
+      "round": 21,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92899000
+    },
+    {
+      "round": 21,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 93942000,
+      "ns": {
+        "before_open": 4226000,
+        "after_guest": 5002000,
+        "open": 40000,
+        "input": 3118000,
+        "key": 9553000,
+        "sections": 9539000,
+        "mir_read": 8489000,
+        "mir_verify": 6068000,
+        "declare": 8504000,
+        "instance": 1295000,
+        "link": 1053000,
+        "snap_key": 102000,
+        "snap_read": 950000,
+        "snap_slice": 485000,
+        "snap_hash": 3645000,
+        "snap_validate": 1040000,
+        "lazy_snap_validate": 6706000,
+        "snap_grow": 6921000,
+        "snap_copy": 965000,
+        "snap_zero": 15544000,
+        "snap_globals": 4000,
+        "frames": 428000,
+        "guest": 119000,
+        "lazy_guest": 146000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 21,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 517548000,
+      "ns": {
+        "before_open": 3947000,
+        "after_guest": 5442000,
+        "open": 30000,
+        "input": 3090000,
+        "key": 9440000,
+        "sections": 9450000,
+        "mir_read": 8706000,
+        "mir_verify": 5928000,
+        "declare": 8379000,
+        "instance": 1305000,
+        "link": 1119000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 422085000,
+        "lazy_guest": 38627000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 21,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 517217000
+    },
+    {
+      "round": 22,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 515189000,
+      "ns": {
+        "before_open": 3965000,
+        "after_guest": 4924000,
+        "open": 40000,
+        "input": 3193000,
+        "key": 9390000,
+        "sections": 9202000,
+        "mir_read": 8474000,
+        "mir_verify": 6102000,
+        "declare": 8107000,
+        "instance": 1282000,
+        "link": 983000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 421517000,
+        "lazy_guest": 38010000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 22,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 511206000
+    },
+    {
+      "round": 22,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63628000
+    },
+    {
+      "round": 22,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63369000,
+      "ns": {
+        "before_open": 4034000,
+        "after_guest": 2658000,
+        "open": 37000,
+        "input": 158000,
+        "key": 30000,
+        "sections": 7045000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9290000,
+        "instance": 3156000,
+        "link": 1369000,
+        "snap_key": 107000,
+        "snap_read": 926000,
+        "snap_slice": 472000,
+        "snap_hash": 3630000,
+        "snap_validate": 948000,
+        "lazy_snap_validate": 6898000,
+        "snap_grow": 6122000,
+        "snap_copy": 782000,
+        "snap_zero": 15026000,
+        "snap_globals": 3000,
+        "frames": 402000,
+        "guest": 103000,
+        "lazy_guest": 173000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 22,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 481072000,
+      "ns": {
+        "before_open": 4187000,
+        "after_guest": 3709000,
+        "open": 39000,
+        "input": 147000,
+        "key": 34000,
+        "sections": 6968000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10248000,
+        "instance": 1243000,
+        "link": 1086000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 408839000,
+        "lazy_guest": 44572000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 22,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 481711000
+    },
+    {
+      "round": 22,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 91357000
+    },
+    {
+      "round": 22,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 91165000,
+      "ns": {
+        "before_open": 3844000,
+        "after_guest": 4117000,
+        "open": 38000,
+        "input": 2935000,
+        "key": 9596000,
+        "sections": 9123000,
+        "mir_read": 8584000,
+        "mir_verify": 5852000,
+        "declare": 8426000,
+        "instance": 1352000,
+        "link": 1064000,
+        "snap_key": 96000,
+        "snap_read": 860000,
+        "snap_slice": 499000,
+        "snap_hash": 3613000,
+        "snap_validate": 831000,
+        "lazy_snap_validate": 6578000,
+        "snap_grow": 6415000,
+        "snap_copy": 776000,
+        "snap_zero": 15888000,
+        "snap_globals": 4000,
+        "frames": 406000,
+        "guest": 113000,
+        "lazy_guest": 155000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 23,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 91862000
+    },
+    {
+      "round": 23,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 90561000,
+      "ns": {
+        "before_open": 3992000,
+        "after_guest": 3870000,
+        "open": 36000,
+        "input": 3035000,
+        "key": 9436000,
+        "sections": 9119000,
+        "mir_read": 8882000,
+        "mir_verify": 5904000,
+        "declare": 8150000,
+        "instance": 1309000,
+        "link": 986000,
+        "snap_key": 89000,
+        "snap_read": 873000,
+        "snap_slice": 437000,
+        "snap_hash": 3594000,
+        "snap_validate": 887000,
+        "lazy_snap_validate": 6741000,
+        "snap_grow": 6620000,
+        "snap_copy": 781000,
+        "snap_zero": 15160000,
+        "snap_globals": 3000,
+        "frames": 403000,
+        "guest": 108000,
+        "lazy_guest": 146000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 23,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 513996000,
+      "ns": {
+        "before_open": 4135000,
+        "after_guest": 4893000,
+        "open": 29000,
+        "input": 3114000,
+        "key": 9419000,
+        "sections": 9013000,
+        "mir_read": 8194000,
+        "mir_verify": 6090000,
+        "declare": 8294000,
+        "instance": 1284000,
+        "link": 1022000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 420690000,
+        "lazy_guest": 37819000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 23,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 511958000
+    },
+    {
+      "round": 23,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 64390000
+    },
+    {
+      "round": 23,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63997000,
+      "ns": {
+        "before_open": 3969000,
+        "after_guest": 2415000,
+        "open": 38000,
+        "input": 156000,
+        "key": 31000,
+        "sections": 7118000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9592000,
+        "instance": 3125000,
+        "link": 1441000,
+        "snap_key": 97000,
+        "snap_read": 871000,
+        "snap_slice": 470000,
+        "snap_hash": 3613000,
+        "snap_validate": 876000,
+        "lazy_snap_validate": 6876000,
+        "snap_grow": 6301000,
+        "snap_copy": 811000,
+        "snap_zero": 15477000,
+        "snap_globals": 2000,
+        "frames": 428000,
+        "guest": 110000,
+        "lazy_guest": 180000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 23,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 497147000,
+      "ns": {
+        "before_open": 3962000,
+        "after_guest": 4019000,
+        "open": 36000,
+        "input": 135000,
+        "key": 28000,
+        "sections": 6973000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10694000,
+        "instance": 1292000,
+        "link": 1093000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 422714000,
+        "lazy_guest": 46201000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 23,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 512824000
+    },
+    {
+      "round": 24,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 502645000,
+      "ns": {
+        "before_open": 4466000,
+        "after_guest": 4049000,
+        "open": 57000,
+        "input": 170000,
+        "key": 37000,
+        "sections": 7973000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 11734000,
+        "instance": 1349000,
+        "link": 1128000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 423663000,
+        "lazy_guest": 48019000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 24,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 500974000
+    },
+    {
+      "round": 24,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92746000
+    },
+    {
+      "round": 24,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92733000,
+      "ns": {
+        "before_open": 4026000,
+        "after_guest": 4135000,
+        "open": 39000,
+        "input": 3211000,
+        "key": 9522000,
+        "sections": 9026000,
+        "mir_read": 8318000,
+        "mir_verify": 6435000,
+        "declare": 8451000,
+        "instance": 1285000,
+        "link": 1068000,
+        "snap_key": 97000,
+        "snap_read": 850000,
+        "snap_slice": 570000,
+        "snap_hash": 3694000,
+        "snap_validate": 959000,
+        "lazy_snap_validate": 6602000,
+        "snap_grow": 6844000,
+        "snap_copy": 965000,
+        "snap_zero": 15918000,
+        "snap_globals": 4000,
+        "frames": 438000,
+        "guest": 114000,
+        "lazy_guest": 162000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 24,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 532653000,
+      "ns": {
+        "before_open": 3949000,
+        "after_guest": 5217000,
+        "open": 39000,
+        "input": 3200000,
+        "key": 9464000,
+        "sections": 9554000,
+        "mir_read": 8334000,
+        "mir_verify": 6488000,
+        "declare": 8471000,
+        "instance": 1342000,
+        "link": 1054000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 435904000,
+        "lazy_guest": 39637000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 24,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 543421000
+    },
+    {
+      "round": 24,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 101025000
+    },
+    {
+      "round": 24,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 83417000,
+      "ns": {
+        "before_open": 5040000,
+        "after_guest": 3234000,
+        "open": 54000,
+        "input": 173000,
+        "key": 49000,
+        "sections": 9988000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 13878000,
+        "instance": 6319000,
+        "link": 2820000,
+        "snap_key": 255000,
+        "snap_read": 1228000,
+        "snap_slice": 1039000,
+        "snap_hash": 4440000,
+        "snap_validate": 1625000,
+        "lazy_snap_validate": 7850000,
+        "snap_grow": 7053000,
+        "snap_copy": 1046000,
+        "snap_zero": 16528000,
+        "snap_globals": 4000,
+        "frames": 482000,
+        "guest": 112000,
+        "lazy_guest": 200000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 25,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 557345000
+    },
+    {
+      "round": 25,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 575858000,
+      "ns": {
+        "before_open": 4367000,
+        "after_guest": 6077000,
+        "open": 66000,
+        "input": 3448000,
+        "key": 9726000,
+        "sections": 10148000,
+        "mir_read": 9251000,
+        "mir_verify": 6606000,
+        "declare": 8899000,
+        "instance": 1315000,
+        "link": 1221000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 471330000,
+        "lazy_guest": 43404000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 25,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 98679000,
+      "ns": {
+        "before_open": 4339000,
+        "after_guest": 6276000,
+        "open": 60000,
+        "input": 3108000,
+        "key": 9596000,
+        "sections": 9825000,
+        "mir_read": 8743000,
+        "mir_verify": 6539000,
+        "declare": 8593000,
+        "instance": 1423000,
+        "link": 1135000,
+        "snap_key": 120000,
+        "snap_read": 1340000,
+        "snap_slice": 465000,
+        "snap_hash": 3665000,
+        "snap_validate": 961000,
+        "lazy_snap_validate": 6891000,
+        "snap_grow": 7205000,
+        "snap_copy": 1040000,
+        "snap_zero": 16448000,
+        "snap_globals": 5000,
+        "frames": 498000,
+        "guest": 148000,
+        "lazy_guest": 256000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 25,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 110795000
+    },
+    {
+      "round": 25,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 542426000
+    },
+    {
+      "round": 25,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 521922000,
+      "ns": {
+        "before_open": 4764000,
+        "after_guest": 6137000,
+        "open": 42000,
+        "input": 143000,
+        "key": 32000,
+        "sections": 8125000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 11314000,
+        "instance": 1338000,
+        "link": 1467000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 440538000,
+        "lazy_guest": 48022000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 25,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 84103000,
+      "ns": {
+        "before_open": 4777000,
+        "after_guest": 6467000,
+        "open": 69000,
+        "input": 223000,
+        "key": 132000,
+        "sections": 8344000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 12600000,
+        "instance": 4846000,
+        "link": 1912000,
+        "snap_key": 122000,
+        "snap_read": 1160000,
+        "snap_slice": 461000,
+        "snap_hash": 4294000,
+        "snap_validate": 1142000,
+        "lazy_snap_validate": 8199000,
+        "snap_grow": 7512000,
+        "snap_copy": 1182000,
+        "snap_zero": 19758000,
+        "snap_globals": 5000,
+        "frames": 563000,
+        "guest": 117000,
+        "lazy_guest": 218000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 25,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 78851000
+    },
+    {
+      "round": 26,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 107119000,
+      "ns": {
+        "before_open": 5338000,
+        "after_guest": 4424000,
+        "open": 46000,
+        "input": 3730000,
+        "key": 10249000,
+        "sections": 10820000,
+        "mir_read": 9812000,
+        "mir_verify": 8409000,
+        "declare": 9877000,
+        "instance": 1660000,
+        "link": 1100000,
+        "snap_key": 96000,
+        "snap_read": 951000,
+        "snap_slice": 542000,
+        "snap_hash": 3805000,
+        "snap_validate": 1746000,
+        "lazy_snap_validate": 7355000,
+        "snap_grow": 8251000,
+        "snap_copy": 1262000,
+        "snap_zero": 16935000,
+        "snap_globals": 4000,
+        "frames": 438000,
+        "guest": 113000,
+        "lazy_guest": 156000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 26,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 95578000
+    },
+    {
+      "round": 26,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 488584000
+    },
+    {
+      "round": 26,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 482823000,
+      "ns": {
+        "before_open": 4254000,
+        "after_guest": 4193000,
+        "open": 49000,
+        "input": 151000,
+        "key": 41000,
+        "sections": 6991000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10288000,
+        "instance": 1256000,
+        "link": 1100000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 409589000,
+        "lazy_guest": 44911000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 26,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63124000,
+      "ns": {
+        "before_open": 4177000,
+        "after_guest": 2632000,
+        "open": 38000,
+        "input": 158000,
+        "key": 32000,
+        "sections": 6995000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9223000,
+        "instance": 3171000,
+        "link": 1352000,
+        "snap_key": 93000,
+        "snap_read": 845000,
+        "snap_slice": 434000,
+        "snap_hash": 3578000,
+        "snap_validate": 882000,
+        "lazy_snap_validate": 6774000,
+        "snap_grow": 6139000,
+        "snap_copy": 791000,
+        "snap_zero": 15144000,
+        "snap_globals": 4000,
+        "frames": 391000,
+        "guest": 104000,
+        "lazy_guest": 167000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 26,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 62795000
+    },
+    {
+      "round": 26,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 511609000
+    },
+    {
+      "round": 26,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 511428000,
+      "ns": {
+        "before_open": 4028000,
+        "after_guest": 6093000,
+        "open": 45000,
+        "input": 3193000,
+        "key": 9353000,
+        "sections": 9293000,
+        "mir_read": 8752000,
+        "mir_verify": 6092000,
+        "declare": 8131000,
+        "instance": 1276000,
+        "link": 1000000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 416163000,
+        "lazy_guest": 38009000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 27,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 541446000
+    },
+    {
+      "round": 27,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 579358000,
+      "ns": {
+        "before_open": 4711000,
+        "after_guest": 5762000,
+        "open": 42000,
+        "input": 162000,
+        "key": 35000,
+        "sections": 7449000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 11681000,
+        "instance": 1325000,
+        "link": 1447000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 494184000,
+        "lazy_guest": 52560000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 27,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 76393000,
+      "ns": {
+        "before_open": 4362000,
+        "after_guest": 4109000,
+        "open": 39000,
+        "input": 180000,
+        "key": 48000,
+        "sections": 9395000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 11483000,
+        "instance": 4142000,
+        "link": 1782000,
+        "snap_key": 110000,
+        "snap_read": 1196000,
+        "snap_slice": 468000,
+        "snap_hash": 3630000,
+        "snap_validate": 1043000,
+        "lazy_snap_validate": 7636000,
+        "snap_grow": 7149000,
+        "snap_copy": 850000,
+        "snap_zero": 17973000,
+        "snap_globals": 4000,
+        "frames": 429000,
+        "guest": 135000,
+        "lazy_guest": 230000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 27,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 79471000
+    },
+    {
+      "round": 27,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 580466000
+    },
+    {
+      "round": 27,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 593407000,
+      "ns": {
+        "before_open": 4471000,
+        "after_guest": 5529000,
+        "open": 49000,
+        "input": 3213000,
+        "key": 9454000,
+        "sections": 9645000,
+        "mir_read": 9152000,
+        "mir_verify": 6707000,
+        "declare": 8476000,
+        "instance": 1336000,
+        "link": 1029000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 492583000,
+        "lazy_guest": 41763000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 27,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92802000,
+      "ns": {
+        "before_open": 4137000,
+        "after_guest": 4870000,
+        "open": 40000,
+        "input": 3206000,
+        "key": 9428000,
+        "sections": 9064000,
+        "mir_read": 8629000,
+        "mir_verify": 6056000,
+        "declare": 8397000,
+        "instance": 1312000,
+        "link": 1013000,
+        "snap_key": 92000,
+        "snap_read": 828000,
+        "snap_slice": 451000,
+        "snap_hash": 3578000,
+        "snap_validate": 899000,
+        "lazy_snap_validate": 6546000,
+        "snap_grow": 6565000,
+        "snap_copy": 902000,
+        "snap_zero": 16088000,
+        "snap_globals": 4000,
+        "frames": 427000,
+        "guest": 111000,
+        "lazy_guest": 159000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 27,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 94700000
+    },
+    {
+      "round": 28,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 64144000,
+      "ns": {
+        "before_open": 3894000,
+        "after_guest": 2847000,
+        "open": 39000,
+        "input": 154000,
+        "key": 30000,
+        "sections": 7038000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9169000,
+        "instance": 3379000,
+        "link": 1397000,
+        "snap_key": 91000,
+        "snap_read": 840000,
+        "snap_slice": 435000,
+        "snap_hash": 3604000,
+        "snap_validate": 892000,
+        "lazy_snap_validate": 6824000,
+        "snap_grow": 6363000,
+        "snap_copy": 791000,
+        "snap_zero": 15673000,
+        "snap_globals": 3000,
+        "frames": 410000,
+        "guest": 102000,
+        "lazy_guest": 169000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 28,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 64281000
+    },
+    {
+      "round": 28,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 509349000
+    },
+    {
+      "round": 28,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 507458000,
+      "ns": {
+        "before_open": 4122000,
+        "after_guest": 5035000,
+        "open": 39000,
+        "input": 3057000,
+        "key": 9367000,
+        "sections": 9365000,
+        "mir_read": 8271000,
+        "mir_verify": 5900000,
+        "declare": 8245000,
+        "instance": 1275000,
+        "link": 1064000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 414164000,
+        "lazy_guest": 37554000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 28,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92890000,
+      "ns": {
+        "before_open": 4057000,
+        "after_guest": 5307000,
+        "open": 36000,
+        "input": 3101000,
+        "key": 9429000,
+        "sections": 8945000,
+        "mir_read": 8845000,
+        "mir_verify": 5864000,
+        "declare": 8214000,
+        "instance": 1271000,
+        "link": 999000,
+        "snap_key": 97000,
+        "snap_read": 860000,
+        "snap_slice": 436000,
+        "snap_hash": 3578000,
+        "snap_validate": 856000,
+        "lazy_snap_validate": 6485000,
+        "snap_grow": 6924000,
+        "snap_copy": 831000,
+        "snap_zero": 16070000,
+        "snap_globals": 4000,
+        "frames": 414000,
+        "guest": 108000,
+        "lazy_guest": 159000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 28,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 96183000
+    },
+    {
+      "round": 28,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 506835000
+    },
+    {
+      "round": 28,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 491107000,
+      "ns": {
+        "before_open": 4388000,
+        "after_guest": 4249000,
+        "open": 40000,
+        "input": 147000,
+        "key": 31000,
+        "sections": 7377000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 11272000,
+        "instance": 1364000,
+        "link": 1148000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 413889000,
+        "lazy_guest": 47202000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 29,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 65707000
+    },
+    {
+      "round": 29,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63252000,
+      "ns": {
+        "before_open": 4020000,
+        "after_guest": 2685000,
+        "open": 37000,
+        "input": 155000,
+        "key": 43000,
+        "sections": 6934000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9196000,
+        "instance": 3200000,
+        "link": 1683000,
+        "snap_key": 93000,
+        "snap_read": 839000,
+        "snap_slice": 438000,
+        "snap_hash": 3584000,
+        "snap_validate": 883000,
+        "lazy_snap_validate": 6799000,
+        "snap_grow": 5981000,
+        "snap_copy": 754000,
+        "snap_zero": 15254000,
+        "snap_globals": 3000,
+        "frames": 402000,
+        "guest": 101000,
+        "lazy_guest": 168000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 29,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 480604000,
+      "ns": {
+        "before_open": 4191000,
+        "after_guest": 3779000,
+        "open": 37000,
+        "input": 142000,
+        "key": 31000,
+        "sections": 7050000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10245000,
+        "instance": 1277000,
+        "link": 1115000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 408068000,
+        "lazy_guest": 44669000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 29,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 476204000
+    },
+    {
+      "round": 29,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 93165000
+    },
+    {
+      "round": 29,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 93524000,
+      "ns": {
+        "before_open": 4011000,
+        "after_guest": 4594000,
+        "open": 38000,
+        "input": 3062000,
+        "key": 9420000,
+        "sections": 9104000,
+        "mir_read": 8547000,
+        "mir_verify": 6309000,
+        "declare": 8406000,
+        "instance": 1324000,
+        "link": 1000000,
+        "snap_key": 93000,
+        "snap_read": 1019000,
+        "snap_slice": 544000,
+        "snap_hash": 3662000,
+        "snap_validate": 1046000,
+        "lazy_snap_validate": 6810000,
+        "snap_grow": 7133000,
+        "snap_copy": 944000,
+        "snap_zero": 15757000,
+        "snap_globals": 5000,
+        "frames": 424000,
+        "guest": 112000,
+        "lazy_guest": 160000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 29,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 512805000,
+      "ns": {
+        "before_open": 4122000,
+        "after_guest": 4987000,
+        "open": 36000,
+        "input": 3210000,
+        "key": 9405000,
+        "sections": 9205000,
+        "mir_read": 8527000,
+        "mir_verify": 6013000,
+        "declare": 8277000,
+        "instance": 1341000,
+        "link": 1073000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 418435000,
+        "lazy_guest": 38174000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 29,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 509863000
+    },
+    {
+      "round": 30,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 511981000,
+      "ns": {
+        "before_open": 4164000,
+        "after_guest": 5319000,
+        "open": 39000,
+        "input": 3073000,
+        "key": 9363000,
+        "sections": 9211000,
+        "mir_read": 8452000,
+        "mir_verify": 6220000,
+        "declare": 8391000,
+        "instance": 1286000,
+        "link": 1047000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 417566000,
+        "lazy_guest": 37850000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 30,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 513651000
+    },
+    {
+      "round": 30,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 66584000
+    },
+    {
+      "round": 30,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 66327000,
+      "ns": {
+        "before_open": 4401000,
+        "after_guest": 2779000,
+        "open": 43000,
+        "input": 165000,
+        "key": 35000,
+        "sections": 7299000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9676000,
+        "instance": 3227000,
+        "link": 1434000,
+        "snap_key": 120000,
+        "snap_read": 1016000,
+        "snap_slice": 549000,
+        "snap_hash": 3671000,
+        "snap_validate": 897000,
+        "lazy_snap_validate": 6990000,
+        "snap_grow": 6856000,
+        "snap_copy": 898000,
+        "snap_zero": 15563000,
+        "snap_globals": 3000,
+        "frames": 424000,
+        "guest": 106000,
+        "lazy_guest": 175000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 30,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 489185000,
+      "ns": {
+        "before_open": 4391000,
+        "after_guest": 3916000,
+        "open": 36000,
+        "input": 145000,
+        "key": 31000,
+        "sections": 7164000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10699000,
+        "instance": 1266000,
+        "link": 1217000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 413394000,
+        "lazy_guest": 46926000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 30,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 503263000
+    },
+    {
+      "round": 30,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 91936000
+    },
+    {
+      "round": 30,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92325000,
+      "ns": {
+        "before_open": 4227000,
+        "after_guest": 5010000,
+        "open": 39000,
+        "input": 3063000,
+        "key": 9503000,
+        "sections": 9308000,
+        "mir_read": 8295000,
+        "mir_verify": 5920000,
+        "declare": 8288000,
+        "instance": 1242000,
+        "link": 1046000,
+        "snap_key": 104000,
+        "snap_read": 885000,
+        "snap_slice": 474000,
+        "snap_hash": 3578000,
+        "snap_validate": 889000,
+        "lazy_snap_validate": 6564000,
+        "snap_grow": 6475000,
+        "snap_copy": 818000,
+        "snap_zero": 15940000,
+        "snap_globals": 4000,
+        "frames": 402000,
+        "guest": 111000,
+        "lazy_guest": 140000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 31,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 92089000
+    },
+    {
+      "round": 31,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 104150000,
+      "ns": {
+        "before_open": 4098000,
+        "after_guest": 4372000,
+        "open": 42000,
+        "input": 3268000,
+        "key": 8834000,
+        "sections": 10992000,
+        "mir_read": 11522000,
+        "mir_verify": 9406000,
+        "declare": 12145000,
+        "instance": 1320000,
+        "link": 1066000,
+        "snap_key": 96000,
+        "snap_read": 849000,
+        "snap_slice": 433000,
+        "snap_hash": 3724000,
+        "snap_validate": 970000,
+        "lazy_snap_validate": 6905000,
+        "snap_grow": 6768000,
+        "snap_copy": 902000,
+        "snap_zero": 15695000,
+        "snap_globals": 3000,
+        "frames": 464000,
+        "guest": 113000,
+        "lazy_guest": 163000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 31,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 515380000,
+      "ns": {
+        "before_open": 4139000,
+        "after_guest": 5660000,
+        "open": 39000,
+        "input": 3135000,
+        "key": 9530000,
+        "sections": 9223000,
+        "mir_read": 8713000,
+        "mir_verify": 6382000,
+        "declare": 8191000,
+        "instance": 1258000,
+        "link": 1003000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 419914000,
+        "lazy_guest": 38193000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 31,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 539953000
+    },
+    {
+      "round": 31,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 68061000
+    },
+    {
+      "round": 31,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 67529000,
+      "ns": {
+        "before_open": 4176000,
+        "after_guest": 3283000,
+        "open": 41000,
+        "input": 158000,
+        "key": 32000,
+        "sections": 7377000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9836000,
+        "instance": 3878000,
+        "link": 1616000,
+        "snap_key": 94000,
+        "snap_read": 875000,
+        "snap_slice": 484000,
+        "snap_hash": 3789000,
+        "snap_validate": 952000,
+        "lazy_snap_validate": 7043000,
+        "snap_grow": 6567000,
+        "snap_copy": 1007000,
+        "snap_zero": 15494000,
+        "snap_globals": 8000,
+        "frames": 502000,
+        "guest": 116000,
+        "lazy_guest": 201000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 31,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 533046000,
+      "ns": {
+        "before_open": 4079000,
+        "after_guest": 3761000,
+        "open": 42000,
+        "input": 159000,
+        "key": 33000,
+        "sections": 7641000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 11325000,
+        "instance": 1317000,
+        "link": 1162000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 454661000,
+        "lazy_guest": 48866000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 31,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 489480000
+    },
+    {
+      "round": 32,
+      "mode": "wmir",
+      "build": "probe",
+      "wall_ns": 485824000,
+      "ns": {
+        "before_open": 4169000,
+        "after_guest": 4421000,
+        "open": 41000,
+        "input": 144000,
+        "key": 32000,
+        "sections": 7088000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 10667000,
+        "instance": 1311000,
+        "link": 1100000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 412169000,
+        "lazy_guest": 44682000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 32,
+      "mode": "wmir",
+      "build": "release",
+      "wall_ns": 485355000
+    },
+    {
+      "round": 32,
+      "mode": "mir2_snap",
+      "build": "release",
+      "wall_ns": 91652000
+    },
+    {
+      "round": 32,
+      "mode": "mir2_snap",
+      "build": "probe",
+      "wall_ns": 92361000,
+      "ns": {
+        "before_open": 4174000,
+        "after_guest": 4376000,
+        "open": 39000,
+        "input": 3088000,
+        "key": 9368000,
+        "sections": 9321000,
+        "mir_read": 8368000,
+        "mir_verify": 6117000,
+        "declare": 8157000,
+        "instance": 1239000,
+        "link": 981000,
+        "snap_key": 92000,
+        "snap_read": 827000,
+        "snap_slice": 483000,
+        "snap_hash": 3673000,
+        "snap_validate": 871000,
+        "lazy_snap_validate": 6726000,
+        "snap_grow": 6809000,
+        "snap_copy": 931000,
+        "snap_zero": 16067000,
+        "snap_globals": 4000,
+        "frames": 398000,
+        "guest": 108000,
+        "lazy_guest": 144000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    },
+    {
+      "round": 32,
+      "mode": "mir2",
+      "build": "probe",
+      "wall_ns": 518475000,
+      "ns": {
+        "before_open": 4267000,
+        "after_guest": 6601000,
+        "open": 38000,
+        "input": 3082000,
+        "key": 9485000,
+        "sections": 9041000,
+        "mir_read": 8807000,
+        "mir_verify": 6352000,
+        "declare": 8292000,
+        "instance": 1290000,
+        "link": 1043000,
+        "snap_key": 0,
+        "snap_read": 0,
+        "snap_slice": 0,
+        "snap_hash": 0,
+        "snap_validate": 0,
+        "snap_grow": 0,
+        "snap_copy": 0,
+        "snap_zero": 0,
+        "snap_globals": 0,
+        "frames": 0,
+        "guest": 421866000,
+        "lazy_guest": 38311000
+      },
+      "lazy_calls": {
+        "guest": 933
+      },
+      "pages": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "round": 32,
+      "mode": "mir2",
+      "build": "release",
+      "wall_ns": 516596000
+    },
+    {
+      "round": 32,
+      "mode": "wmir_snap",
+      "build": "release",
+      "wall_ns": 63205000
+    },
+    {
+      "round": 32,
+      "mode": "wmir_snap",
+      "build": "probe",
+      "wall_ns": 63746000,
+      "ns": {
+        "before_open": 4142000,
+        "after_guest": 2666000,
+        "open": 37000,
+        "input": 154000,
+        "key": 31000,
+        "sections": 6909000,
+        "mir_read": 0,
+        "mir_verify": 0,
+        "declare": 9253000,
+        "instance": 3140000,
+        "link": 1364000,
+        "snap_key": 92000,
+        "snap_read": 836000,
+        "snap_slice": 462000,
+        "snap_hash": 3676000,
+        "snap_validate": 905000,
+        "lazy_snap_validate": 7005000,
+        "snap_grow": 6363000,
+        "snap_copy": 821000,
+        "snap_zero": 15231000,
+        "snap_globals": 4000,
+        "frames": 380000,
+        "guest": 107000,
+        "lazy_guest": 168000
+      },
+      "lazy_calls": {
+        "snap_validate": 10,
+        "guest": 12
+      },
+      "pages": [
+        314,
+        4857,
+        119
+      ]
+    }
+  ]
+}

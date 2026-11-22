@@ -1,0 +1,265 @@
+diff --git a/lib/wardite.rb b/lib/wardite.rb
+index dc81c7c..2a4c0c4 100644
+--- a/lib/wardite.rb
++++ b/lib/wardite.rb
+@@ -1,6 +1,75 @@
+ # frozen_string_literal: true
+ # rbs_inline: enabled
+ 
++# Spinel-only benchmark overlay. Times share CLOCK_MONOTONIC with the parent.
++module StartupProbe
++  OPEN = 1
++  INPUT = 2
++  KEY = 3
++  SECTIONS = 4
++  MIR_READ = 5
++  MIR_VERIFY = 6
++  DECLARE = 7
++  INSTANCE = 8
++  LINK = 9
++  SNAP_KEY = 10
++  SNAP_READ = 11
++  SNAP_SLICE = 12
++  SNAP_HASH = 13
++  SNAP_VALIDATE = 14
++  SNAP_GROW = 15
++  SNAP_COPY = 16
++  SNAP_ZERO = 17
++  SNAP_GLOBALS = 18
++  FRAMES = 19
++  GUEST = 20
++  LAZY_BEGIN = 97
++  LAZY_END = 98
++  FINISH = 99
++  ffi_source <<~C
++    #include <time.h>
++    #include <stdio.h>
++    static const char *names[21] = {0, "open", "input", "key", "sections", "mir_read", "mir_verify", "declare", "instance", "link", "snap_key", "snap_read", "snap_slice", "snap_hash", "snap_validate", "snap_grow", "snap_copy", "snap_zero", "snap_globals", "frames", "guest"};
++    static unsigned long long first, last, lazy_start, elapsed[21],
++      lazy[21], calls[21];
++    static int phase, done, initial_pages, pages, used;
++    int startup_probe_memory(int initial, int total, int nonzero) {
++      initial_pages = initial;
++      pages = total;
++      used = nonzero;
++      return 0;
++    }
++    int startup_probe_mark(int event) {
++      if (done) return 0;
++      struct timespec ts;
++      clock_gettime(CLOCK_MONOTONIC, &ts);
++      unsigned long long now = (unsigned long long)ts.tv_sec * 1000000000 + ts.tv_nsec;
++      if (event == 97) {
++        lazy_start = now;
++        return 0;
++      }
++      if (event == 98) {
++        lazy[phase] += now - lazy_start;
++        calls[phase]++;
++        return 0;
++      }
++      if (phase) elapsed[phase] += now - last;
++      else first = now;
++      last = now;
++      if (event == 99) {
++        done = 1;
++        fprintf(stderr, "WMIR_PHASE_NS %llu %llu %d %d %d", first, now, initial_pages, pages, used);
++        for (size_t i = 1; i < 21; i++)
++          fprintf(stderr, " %s=%llu/%llu/%llu", names[i], elapsed[i], lazy[i], calls[i]);
++        fputc(10, stderr);
++      } else phase = event;
++      return 0;
++    }
++  C
++  ffi_func :startup_probe_mark, [:int], :int
++  ffi_func :startup_probe_memory, [:int, :int, :int], :int
++end
++
+ require_relative "wardite/version"
+ require_relative "wardite/leb128"
+ require_relative "wardite/const"
+@@ -65,6 +134,7 @@ module Wardite
+       cached_functions = nil #: Array[Efflorescence::Function]?
+       if mir_cache && !mir_profile
+         cached_functions = mir_cache.read_functions(self)
++        StartupProbe.startup_probe_mark(StartupProbe::INSTANCE)
+       end
+       types = type_section
+       code_section&.func_codes&.each do |body|
+@@ -92,6 +162,7 @@ module Wardite
+       code = code_section
+       source_code = code.source_bytes if code && !cached_functions
+       code.source_bytes = nil if code
++      StartupProbe.startup_probe_mark(StartupProbe::LINK)
+       @runtime = Efflorescence::VM.new(self, source_code: source_code, disabled_optimizations: disabled_optimizations,
+         enabled_optimizations: enabled_optimizations, mir_cse: mir_cse, profile: mir_profile,
+         mir_cache: mir_cache, cached_functions: cached_functions, cache_checked: true, eager_mir: eager_mir)
+diff --git a/lib/wardite/cli/cli.rb b/lib/wardite/cli/cli.rb
+index ccc3a5a..e0afb45 100644
+--- a/lib/wardite/cli/cli.rb
++++ b/lib/wardite/cli/cli.rb
+@@ -128,6 +128,7 @@ module Wardite
+ 
+       # @rbs return: ::Wardite::Instance
+       def new_instance
++        StartupProbe.startup_probe_mark(StartupProbe::OPEN)
+         ins = File.open(file, "rb") do |f|
+           Wardite::BinaryLoader.load_from_buffer(f, enable_wasi: wasi,
+             disabled_optimizations: disabled_optimizations, enabled_optimizations: @enabled_optimizations, mir_profile: mir_profile,
+@@ -225,9 +226,11 @@ module Wardite
+           cache = runtime.mir_cache
+           if cache && instance.wasi && !instance.start_section
+             require "wardite/efflorescence/snapshot" unless RUBY_ENGINE == "spinel"
++            StartupProbe.startup_probe_mark(StartupProbe::SNAP_KEY)
+             recorder = Wardite::Efflorescence::Snapshot.new(directory, instance, cache)
+             frames = runtime.mir_cache_hit ? recorder.restore(runtime) : nil
+             if frames
++              StartupProbe.startup_probe_mark(StartupProbe::FRAMES)
+               runtime.resume(frames)
+               return
+             end
+@@ -235,7 +238,9 @@ module Wardite
+           end
+         end
+         begin
++          StartupProbe.startup_probe_mark(StartupProbe::GUEST)
+           runtime.call(:_start, [])
++          StartupProbe.startup_probe_mark(StartupProbe::FINISH)
+         ensure
+           # proc_exit leaves through exit, which runs this on CRuby and Spinel.
+           print_mir_profile(runtime.metrics) if mir_profile
+diff --git a/lib/wardite/efflorescence/mir_cache.rb b/lib/wardite/efflorescence/mir_cache.rb
+index 1055c6d..0db134f 100644
+--- a/lib/wardite/efflorescence/mir_cache.rb
++++ b/lib/wardite/efflorescence/mir_cache.rb
+@@ -593,6 +593,7 @@ module Wardite
+         return nil if @output
+         artifact = @artifact
+         payload = artifact ? artifact.directory_bytes : read_verified_payload
++        StartupProbe.startup_probe_mark(StartupProbe::DECLARE)
+         entries = module_entries(instance)
+         decoder = Decoder.new(payload, instance, entries, artifact: artifact)
+         decoder.declare(encode_layout(instance, entries))
+@@ -622,7 +623,9 @@ module Wardite
+         return unless function.cache_pending
+ 
+         decoder = @decoder || raise(Invalid)
++        StartupProbe.startup_probe_mark(StartupProbe::LAZY_BEGIN)
+         decoder.restore(function)
++        StartupProbe.startup_probe_mark(StartupProbe::LAZY_END)
+       rescue Invalid
+         raise Wardite::EvalError, "invalid WMIR function #{function.index} in #{@path}" if @artifact
+         raise Wardite::EvalError, "invalid MIR2 function #{function.index} in #{@path}. Delete this cache file and retry."
+@@ -702,7 +705,9 @@ module Wardite
+       def read_verified_payload
+         header_size = @header.bytesize
+         prefix_size = header_size + INTEGRITY_SIZE
++        StartupProbe.startup_probe_mark(StartupProbe::MIR_READ)
+         contents = MIRCache.read_contents(@path, @header, prefix_size)
++        StartupProbe.startup_probe_mark(StartupProbe::MIR_VERIFY)
+         length = [contents.bytesize - prefix_size].pack("Q<")
+         raise Invalid unless contents.byteslice(header_size, LENGTH_SIZE) == length
+ 
+diff --git a/lib/wardite/efflorescence/snapshot.rb b/lib/wardite/efflorescence/snapshot.rb
+index d7ff50f..f876e2d 100644
+--- a/lib/wardite/efflorescence/snapshot.rb
++++ b/lib/wardite/efflorescence/snapshot.rb
+@@ -131,9 +131,13 @@ module Wardite
+         store = instance.store
+         header_size = @header.bytesize
+         prefix_size = header_size + MIRCache::DIGEST_SIZE
++        StartupProbe.startup_probe_mark(StartupProbe::SNAP_READ)
+         contents = MIRCache.read_contents(@path, @header, prefix_size)
++        StartupProbe.startup_probe_mark(StartupProbe::SNAP_SLICE)
+         payload = contents.byteslice(prefix_size..) || raise(MIRCache::Invalid)
++        StartupProbe.startup_probe_mark(StartupProbe::SNAP_HASH)
+         raise MIRCache::Invalid unless contents.byteslice(header_size, MIRCache::DIGEST_SIZE) == Digest::SHA256.digest(payload)
++        StartupProbe.startup_probe_mark(StartupProbe::SNAP_VALIDATE)
+         reader = MIRCache::Reader.new(payload)
+         raise MIRCache::Invalid unless reader.integer == @wasi.fd_count && store.memories.size <= 1
+         globals = reader.vector("q<", 8)
+@@ -161,14 +165,19 @@ module Wardite
+         reader.finish
+ 
+         if memory
++          StartupProbe.startup_probe_mark(StartupProbe::SNAP_GROW)
+           raise MIRCache::Invalid if pages > current && memory.grow(pages - current) < 0
++          StartupProbe.startup_probe_memory(current, pages, used.size)
++          StartupProbe.startup_probe_mark(StartupProbe::SNAP_COPY)
+           used_pages = Array.new(pages, false)
+           used.each_with_index do |page, i|
+             used_pages[page] = true
+             memory.write_bytes(page * PAGE_SIZE, contents.byteslice(i * PAGE_SIZE, PAGE_SIZE) || raise(MIRCache::Invalid))
+           end
++          StartupProbe.startup_probe_mark(StartupProbe::SNAP_ZERO)
+           used_pages.each_with_index { |nonzero, page| memory.write_bytes(page * PAGE_SIZE, ZERO_PAGE) unless nonzero }
+         end
++        StartupProbe.startup_probe_mark(StartupProbe::SNAP_GLOBALS)
+         access = StoreAccess.new(store)
+         store.globals.each_with_index do |global, index|
+           value = globals.fetch(index)
+diff --git a/lib/wardite/efflorescence/vm.rb b/lib/wardite/efflorescence/vm.rb
+index c1d79f4..28729aa 100644
+--- a/lib/wardite/efflorescence/vm.rb
++++ b/lib/wardite/efflorescence/vm.rb
+@@ -161,7 +161,9 @@ module Wardite
+           frame.pc = state.pc
+           frames << frame
+         end
++        StartupProbe.startup_probe_mark(StartupProbe::GUEST)
+         run_frames(pools, frames, 0)
++        StartupProbe.startup_probe_mark(StartupProbe::FINISH)
+         nil
+       end
+ 
+diff --git a/lib/wardite/efflorescence/wasi.rb b/lib/wardite/efflorescence/wasi.rb
+index 62791d8..2a95bb2 100644
+--- a/lib/wardite/efflorescence/wasi.rb
++++ b/lib/wardite/efflorescence/wasi.rb
+@@ -44,6 +44,7 @@ module Wardite
+       # @rbs sources: Array[Integer]?
+       # @rbs return: bot
+       def proc_exit_from_registers(store, values, sources)
++        StartupProbe.startup_probe_mark(StartupProbe::FINISH)
+         exit(values.fetch((sources || PROC_EXIT_ARGUMENTS).fetch(0)))
+       end
+ 
+diff --git a/lib/wardite/load.rb b/lib/wardite/load.rb
+index 87f57fa..fc1f28f 100644
+--- a/lib/wardite/load.rb
++++ b/lib/wardite/load.rb
+@@ -417,6 +417,7 @@ module Wardite
+       end
+       if (mir_cache || artifact_input || emit_wmir) && !mir_profile
+         require "wardite/efflorescence/mir_cache" unless RUBY_ENGINE == "spinel"
++        StartupProbe.startup_probe_mark(StartupProbe::INPUT)
+         bytes = "".b
+         if artifact_input && buf.is_a?(File)
+           artifact = Efflorescence::MIRArtifact.new(buf, mir_cache_verify)
+@@ -430,12 +431,14 @@ module Wardite
+           raise LoadError, "WMIR exceeds the Wasm size limit" if emit_wmir && bytes.bytesize > Efflorescence::MIRCache::MAX_BYTES
+           @buf = StringIO.new(bytes)
+         end
++        StartupProbe.startup_probe_mark(StartupProbe::KEY)
+         configuration = Efflorescence::Configuration.new(disabled_optimizations, enabled: enabled_optimizations, cse: mir_cse)
+         disabled_optimizations = configuration.disabled
+         cache = Efflorescence::MIRCache.new(mir_cache || ".", bytes, configuration, verify: mir_cache_verify,
+           eager: mir_cache_eager, artifact: artifact, output: emit_wmir)
+       end
+ 
++      StartupProbe.startup_probe_mark(StartupProbe::SECTIONS)
+       version = preamble
+       sections_ = sections(!cache.nil?, true, artifact)
+       @buf = buf if cache
+diff --git a/lib/wardite/wasi.rb b/lib/wardite/wasi.rb
+index 0632aa7..4be8ca0 100644
+--- a/lib/wardite/wasi.rb
++++ b/lib/wardite/wasi.rb
+@@ -729,6 +729,7 @@ module Wardite
+     # @rbs return: Object
+     def proc_exit(store, args)
+       exit_code = args[0].value
++      StartupProbe.startup_probe_mark(StartupProbe::FINISH)
+       exit(exit_code)
+     end
+ 
