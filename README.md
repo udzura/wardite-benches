@@ -154,3 +154,5 @@ script/baseline.sh
 [ADR 0027 の検証](adr/0027/README.md)では、局所 CSE の有無で Base64 encode/decode、PNG 輝度変換、整数ループを比較できます。
 
 [ADR 0028 の検証](adr/0028/README.md)では、定数畳み込み、制御フロー簡約、死命令除去、ループ不変式移動を個別に比較できます。
+
+[4 MiB Base64 decode の区間計測](benchmark/base64-decode/README.md)では、Wardite と iwasm の時間差を復号本体、32文字単位のループ、入出力に分けて比較できます。

@@ -1,0 +1,23 @@
+diff --git a/lib/sp_array.h b/lib/sp_array.h
+index 6b7bb6926..5c555ea33 100644
+--- a/lib/sp_array.h
++++ b/lib/sp_array.h
+@@ -209,3 +209,3 @@ static SP_COLD void sp_IntArray_drop_nilbits(sp_IntArray*a);
+ static SP_NOINLINE SP_COLD void sp_IntArray_clr_nil(sp_IntArray*a,sp_int pi){sp_nilbit_clr(a->nilbits,pi);if((uint64_t)pi>=a->nil_lo&&!sp_nilbit_get(a->nilbits,a->nil_lo)&&(a->nil_lo=sp_nil_lo_up(a->nilbits,a->nil_lo,a->cap))==SP_NIL_LO_NONE)sp_IntArray_drop_nilbits(a);}
+-static inline void sp_IntArray_set(sp_IntArray*a,sp_int i,sp_int v){if(SP_LIKELY(a&&!a->frozen&&i>=0&&i<a->len)){a->data[a->start+i]=v;if(SP_UNLIKELY(a->nilbits))sp_IntArray_clr_nil(a,a->start+i);return;}sp_IntArray_set_cold(a,i,v);}
++static inline void sp_IntArray_set(sp_IntArray*a,sp_int i,sp_int v){if(SP_LIKELY(a&&!a->frozen&&(uint64_t)i<(uint64_t)a->len)){a->data[a->start+i]=v;if(SP_UNLIKELY(a->nilbits))sp_IntArray_clr_nil(a,a->start+i);return;}sp_IntArray_set_cold(a,i,v);}
+ /* `a[i] = nil`: the slot's value is 0 and its bit set (the index rules of
+diff --git a/src/codegen_call_recv.c b/src/codegen_call_recv.c
+index c13feef4c..aafb3b0e4 100644
+--- a/src/codegen_call_recv.c
++++ b/src/codegen_call_recv.c
+@@ -1309,4 +1309,8 @@ static int fetch_recv_in_slot(Compiler *c, int recv, int index, const char *rend
+   index = nt_paren_single(nt, index);
+-  if (index < 0 || repr_of(c, index).kind != RK_SCALAR || comp_ntype(c, index) != TY_INT) return 0;
++  if (index < 0 || comp_ntype(c, index) != TY_INT) return 0;
+   NodeKind k = nt_kind(nt, index);
++  ReprKind kind = repr_of(c, index).kind;
++  /* Reading a nilable integer local runs no Ruby: its integer argument
++     conversion either takes the word or raises before the receiver is used. */
++  if (kind != RK_SCALAR && !(k == NK_LocalVariableReadNode && kind == RK_OPT)) return 0;
+   if (k == NK_CallNode) {
