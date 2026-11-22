@@ -1,0 +1,37 @@
+{
+  "iterations": 174763,
+  "counts": {
+    "base": {
+      "tags": 38622623,
+      "ops": 38622623,
+      "loads": 0,
+      "stores": 0,
+      "fallback": 0,
+      "views": 0
+    },
+    "D": {
+      "tags": 6815757,
+      "ops": 38622623,
+      "loads": 0,
+      "stores": 0,
+      "fallback": 0,
+      "views": 0
+    },
+    "M": {
+      "tags": 38622623,
+      "ops": 38622623,
+      "loads": 11184832,
+      "stores": 1398104,
+      "fallback": 0,
+      "views": 1
+    },
+    "DRMW": {
+      "tags": 6815757,
+      "ops": 38622623,
+      "loads": 11184832,
+      "stores": 1398104,
+      "fallback": 0,
+      "views": 1
+    }
+  }
+}
