@@ -44,10 +44,22 @@ def access_log(count):
     return "[\n" + ",\n".join(rows) + "\n]\n"
 
 
+def rss_feed(count):
+    titles = ["Ruby news", "更新 &amp; 解説", "Wasm &#x1F4DA;", "<![CDATA[Ruby <tips>]]>"]
+    items = (f"<item><title>{titles[i % len(titles)]} {i}</title></item>" for i in range(count))
+    return (
+        '<rss version="2.0"><channel><title>Wardite</title>'
+        '<link>https://example.org/</link><description>News</description>\n'
+        + "\n".join(items)
+        + "\n</channel></rss>\n"
+    )
+
+
 def main():
     directory = Path(__file__).resolve().parents[1] / "build" / "fixtures"
     directory.mkdir(parents=True, exist_ok=True)
     for count in (1024, 16384):
+        (directory / f"feed-{count}.xml").write_text(rss_feed(count), encoding="utf-8")
         (directory / f"access-{count}.json").write_text(access_log(count), encoding="utf-8")
     data = bytes(range(256)) * 1024 + b"\xff"
     (directory / "data.bin").write_bytes(data)
