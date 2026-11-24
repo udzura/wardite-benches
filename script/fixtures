@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import base64
+import json
 import struct
 import zlib
 from pathlib import Path
@@ -29,9 +30,25 @@ def rgb_png(size):
     )
 
 
+def access_log(count):
+    paths = ["/", "/api/items", "/検索/商品", "/記事/バックナンバー"]
+    statuses = [200, 200, 304, 404, 200, 503, 201, 500, 200, 200, 204]
+    rows = []
+    for i in range(count):
+        row = {
+            "status": statuses[i % len(statuses)],
+            "bytes": (8191 * i + 17) % 65536,
+            "path": f"{paths[i % len(paths)]}/{i}" if i % len(paths) else "/",
+        }
+        rows.append(json.dumps(row, ensure_ascii=i % 4 == 3, separators=(",", ":")))
+    return "[\n" + ",\n".join(rows) + "\n]\n"
+
+
 def main():
     directory = Path(__file__).resolve().parents[1] / "build" / "fixtures"
     directory.mkdir(parents=True, exist_ok=True)
+    for count in (1024, 16384):
+        (directory / f"access-{count}.json").write_text(access_log(count), encoding="utf-8")
     data = bytes(range(256)) * 1024 + b"\xff"
     (directory / "data.bin").write_bytes(data)
     (directory / "data.b64").write_bytes(base64.b64encode(data) + b"\n")

@@ -5,11 +5,13 @@ edition = "2024"
 publish = false
 
 [features]
-wasi = ["dep:base64", "dep:png"]
+wasi = ["dep:base64", "dep:png", "dep:serde", "dep:serde_json"]
 
 [dependencies]
 base64 = { version = "0.22", optional = true }
 png = { version = "0.18", optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
+serde_json = { version = "1", optional = true }
 
 [[example]]
 name = "xorshift"
@@ -41,4 +43,8 @@ required-features = ["wasi"]
 
 [[example]]
 name = "png_grayscale"
+required-features = ["wasi"]
+
+[[example]]
+name = "json_log_summary"
 required-features = ["wasi"]

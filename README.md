@@ -82,6 +82,18 @@ script/run -- "$wasi/base64_codec.wasm" decode < build/fixtures/data.b64 > build
 script/run -- "$wasi/png_grayscale.wasm" < build/fixtures/rgb.png > build/gray.pgm
 ```
 
+### JSON アクセスログの集計
+
+`json_log_summary` は標準入力の JSON 配列を `serde_json` で Rust の構造体の配列に変換します。5xx の件数、5xx のレスポンスバイト数の合計、全レコード中で最長のパスの UTF-8 バイト数を出力します。`script/fixtures` が生成するログには、UTF-8 の日本語と Unicode エスケープの両方が含まれます。
+
+```sh
+wasm=build/rust/wasm32-wasip1/release/examples/json_log_summary.wasm
+script/compare --bench --iwasm --wasi-stdin build/fixtures/access-1024.json "$wasm"
+script/compare --bench --iwasm --wasi-stdin build/fixtures/access-16384.json "$wasm"
+```
+
+期待する出力は 1,024 件で `186 6723674 34`、16,384 件で `2978 97590534 35` です。
+
 ## エンジン間の結果比較
 
 `script/compare WASM EXPORT [ARG ...]` は、ビルド済みの Wasm を Wardite の new-engine と Wasmtime で実行し、export の数値の戻り値を 1 つ比較します。Python 3 と `wasmtime` が必要です。
