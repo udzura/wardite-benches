@@ -31,7 +31,7 @@ W="build/wardite --new-engine"
     echo "iwasm: $(iwasm --version | head -1)"
     echo "$(hyperfine --version)"
     shasum -a 256 build/wat/xorshift.wasm $ex/xorshift.wasm $ex/splitmix64.wasm $ex/mandelbrot.wasm \
-        $ex/monte_carlo_pi.wasm $ex/count_primes.wasm $ex/crc8_stream.wasm $wasi/base64_codec.wasm $wasi/png_grayscale.wasm
+        $ex/monte_carlo_pi.wasm $ex/count_primes.wasm $ex/crc8_stream.wasm $wasi/base64_codec.wasm $wasi/png_grayscale.wasm $wasi/json_log_summary.wasm $wasi/rss_summary.wasm
 } > "$out/env.txt"
 
 bench() { # NAME HYPERFINE_ARGS...
@@ -91,6 +91,12 @@ wasi_case base64-decode $fx/data.b64 $wasi/base64_codec.wasm decode
 wasi_case base64-decode-4m $fx/data-4m.b64 $wasi/base64_codec.wasm decode
 wasi_case png $fx/rgb.png $wasi/png_grayscale.wasm
 wasi_case png-1024 $fx/rgb-1024.png $wasi/png_grayscale.wasm
+
+wasi_case json-log-1k $fx/access-1024.json $wasi/json_log_summary.wasm
+wasi_case json-log-16k $fx/access-16384.json $wasi/json_log_summary.wasm
+
+wasi_case rss-1k $fx/feed-1024.xml $wasi/rss_summary.wasm
+wasi_case rss-16k $fx/feed-16384.xml $wasi/rss_summary.wasm
 
 python3 - "$out" > "$out/summary.md" <<'EOF'
 import json

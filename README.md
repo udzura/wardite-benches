@@ -82,6 +82,31 @@ script/run -- "$wasi/base64_codec.wasm" decode < build/fixtures/data.b64 > build
 script/run -- "$wasi/png_grayscale.wasm" < build/fixtures/rgb.png > build/gray.pgm
 ```
 
+### JSON アクセスログの集計
+
+`json_log_summary` は標準入力の JSON 配列を `serde_json` で Rust の構造体の配列に変換します。5xx の件数、5xx のレスポンスバイト数の合計、全レコード中で最長のパスの UTF-8 バイト数を出力します。`script/fixtures` が生成するログには、UTF-8 の日本語と Unicode エスケープの両方が含まれます。
+
+```sh
+wasm=build/rust/wasm32-wasip1/release/examples/json_log_summary.wasm
+script/compare --bench --iwasm --wasi-stdin build/fixtures/access-1024.json "$wasm"
+script/compare --bench --iwasm --wasi-stdin build/fixtures/access-16384.json "$wasm"
+```
+
+期待する出力は 1,024 件で `186 6723674 34`、16,384 件で `2978 97590534 35` です。
+
+### XML（RSS フィード）の集計
+
+`rss_summary` は `xml-rs` のイベントリーダーで標準入力を逐次解析し、RSS の `channel/item` の件数と、それらの `title` に含まれる Unicode スカラー値の総数を出力します。チャンネル自身のタイトルは集計対象外です。固定入力には日本語、実体参照（`&amp;`）、数値文字参照（`&#x1F4DA;`）、CDATA を含め、展開後のテキストを数えます。
+
+```sh
+script/fixtures
+wasm=build/rust/wasm32-wasip1/release/examples/rss_summary.wasm
+script/compare --bench --iwasm --wasi-stdin build/fixtures/feed-1024.xml "$wasm"
+script/compare --bench --iwasm --wasi-stdin build/fixtures/feed-16384.xml "$wasm"
+```
+
+期待する出力は 1,024 件で `1024 12458`、16,384 件で `16384 222362` です。
+
 ## エンジン間の結果比較
 
 `script/compare WASM EXPORT [ARG ...]` は、ビルド済みの Wasm を Wardite の new-engine と Wasmtime で実行し、export の数値の戻り値を 1 つ比較します。Python 3 と `wasmtime` が必要です。
